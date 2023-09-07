@@ -1,0 +1,154 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(204, 204, 204);
+}
+
+#navHead {
+  padding: 1rem 1rem 1rem 0.5rem;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: static;
+  top: 0;
+}
+
+#logo {
+  font-size: 1.25rem;
+  color: red;
+}
+
+#navIcon {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#navMenuDiv {
+  top: 3.5rem;
+  right: 1rem;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  background-color: white;
+  color: red;
+  height: fit-content;
+  position: absolute;
+  z-index: 100;
+  display: none;
+  opacity: 0;
+}
+
+#navMenuDiv.openNavMenu {
+  display: block;
+  opacity: 1;
+}
+
+#navMenuDiv > p > a {
+  font-size: 0.75rem;
+  color: red;
+}
+
+#navMenuDiv > p {
+  margin: 0.25rem 0;
+}
+
+.signSections {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+}
+
+#sigSec {
+  display: none;
+}
+
+#sigSec.openSig {
+  display: flex;
+}
+
+#logSec {
+  display: flex;
+}
+
+.mainDiv {
+  width: 80%;
+  margin-top: 10vh;
+  height: fit-content;
+}
+
+.signHead {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: red;
+  text-align: center;
+}
+
+.signDiv {
+  margin: 1rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.signIcon {
+  font-size: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  background-color: white;
+  color: red;
+}
+
+.signInput {
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  letter-spacing: 1px;
+  border: hidden;
+  outline: none;
+  width: 100%;
+}
+
+.signBtns {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  border: hidden;
+  width: 100%;
+  background-color: white;
+  color: red;
+  cursor: pointer;
+}
+
+.logBtn {
+  background: none;
+  border: none;
+  display: flex;
+}
+
+.logSpan {
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  letter-spacing: 1px;
+  background-color: white;
+  align-self: stretch;
+}
+
+#logText {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+#logText a {
+  color: red;
+}
+
+#mesSec {
+  display: none;
+}

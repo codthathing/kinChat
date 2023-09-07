@@ -1,10 +1,22 @@
 import React from 'react';
-import ReactDOM  from 'react-dom';
+import ReactDOM from 'react-dom';
+import './style.css'
+import NavComp from './sections/nav';
+import SignComp from './sections/signup';
+import LoginComp from './sections/login';
+import MessComp from './sections/message';
 
 const Default = () => {
-  
+
   return (
-    <div>Hello World!</div>
+    <>
+      <main id="body">
+        <NavComp/>
+        <SignComp/>
+        <LoginComp/>
+        <MessComp/>
+      </main>
+    </>
   );
 };
 
