@@ -60,17 +60,6 @@ body {
   width: 100%;
   height: 100vh;
   justify-content: center;
-}
-
-#sigSec {
-  display: none;
-}
-
-#sigSec.openSig {
-  display: flex;
-}
-
-#logSec {
   display: flex;
 }
 
@@ -87,8 +76,11 @@ body {
   text-align: center;
 }
 
+.signSec {
+  margin: 0.5rem 0;
+}
+
 .signDiv {
-  margin: 1rem 0;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -112,6 +104,11 @@ body {
   width: 100%;
 }
 
+.signText {
+  color: red;
+  font-size: 0.75rem;
+}
+
 .signBtns {
   margin-top: 1rem;
   border-radius: 0.5rem;
@@ -124,10 +121,18 @@ body {
   cursor: pointer;
 }
 
+#sigLink {
+  color: red;
+  text-decoration: none;
+}
+
 .logBtn {
   background: none;
   border: none;
   display: flex;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
 }
 
 .logSpan {
@@ -136,7 +141,8 @@ body {
   border-radius: 0 0.5rem 0.5rem 0;
   letter-spacing: 1px;
   background-color: white;
-  align-self: stretch;
+  text-align: start;
+  width: 100%;
 }
 
 #logText {
@@ -145,10 +151,6 @@ body {
   margin-top: 1rem;
 }
 
-#logText a {
+#logLink {
   color: red;
-}
-
-#mesSec {
-  display: none;
 }
