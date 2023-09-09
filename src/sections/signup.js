@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "../link";
 
+// localStorage.clear()
+let accFromLocal = JSON.parse(localStorage.getItem('accounts') || '[]')
 const SignComp = () => {
 
   const [accDetails, setAccDetails] = useState(
@@ -15,41 +17,39 @@ const SignComp = () => {
     setAccDetails({...accDetails, [name]:value})
   }
 
-  const [accCreated, setAccCreated] = useState([
-    {
-      email:'akinwunmiolusegun277@gmail.com',
-      username:'Pheezy'
-    }
-  ])
-
+  const [accCreated, setAccCreated] = useState(accFromLocal)
   const [feedDetails, setFeedDetails] = useState({
     email:'',
-    // password:'',
     conPass:'',
     username:''
   })
+
   const createAcc = (e) => {
     e.preventDefault();
     if(accDetails.email && accDetails.password && accDetails.conPass && accDetails.username) {
       let perAcc = {
+        id: accCreated.length,
         email: accDetails.email,
         password: accDetails.password,
         conPass: accDetails.conPass,
         username: accDetails.username
       }
-      if(accDetails.password !== accDetails.conPass) {
-        setFeedDetails({conPass:'Password not matching'})
-      }
       accCreated.map((account) => {
-        if(accDetails.email === account.email) {
-          setFeedDetails({email:'Email already used'})
+        if(perAcc.email == account.email && 
+            perAcc.username == account.username && 
+            perAcc.password !== perAcc.conPass) {
+          setFeedDetails({username:'Username already used' || ''})
+          setFeedDetails({email:'Email already used' || ''})
+          setFeedDetails({conPass:'Password not matching' || ''})
+        } 
+        else if(perAcc.email !== account.email && 
+            perAcc.username !== account.username &&
+            perAcc.password == perAcc.conPass) {
+          accCreated.push(perAcc)
+          localStorage.setItem('accounts', JSON.stringify(accCreated))
         }
       })
-      accCreated.map((account) => {
-        if(accDetails.username === account.username) {
-          setFeedDetails({username:'Username already used'})
-        }
-      })
+      // console.log(accFromLocal)
     }
   }
 
@@ -62,6 +62,7 @@ const SignComp = () => {
               <div className="signDiv">
                 <i className="signIcon">E</i>
                 <input type="text" 
+                  key={1}
                   name="email"
                   value={accDetails.email} 
                   onChange={handleDetails}
@@ -76,6 +77,7 @@ const SignComp = () => {
                 <i className="signIcon">T</i>
                 <input 
                   type="password" 
+                  key={2}
                   name="password" 
                   value={accDetails.password}
                   onChange={handleDetails}
@@ -83,13 +85,13 @@ const SignComp = () => {
                   placeholder="Type Password" 
                   className="signInput"/>
               </div>
-              {/* <p className="signText">{feedDetails.password}</p> */}
             </section>
             <section className="signSec">
               <div className="signDiv">
                 <i className="signIcon">C</i>
                 <input 
                   type="password" 
+                  key={3}
                   name="conPass" 
                   value={accDetails.conPass}
                   onChange={handleDetails}
@@ -104,6 +106,7 @@ const SignComp = () => {
                 <i className="signIcon">U</i>
                 <input 
                   type="text" 
+                  key={4}
                   name="username" 
                   value={accDetails.username}
                   onChange={handleDetails}
