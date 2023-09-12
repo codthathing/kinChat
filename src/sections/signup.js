@@ -35,21 +35,28 @@ const SignComp = () => {
         username: accDetails.username
       }
       accCreated.map((account) => {
-        if(perAcc.email == account.email && 
-            perAcc.username == account.username && 
-            perAcc.password !== perAcc.conPass) {
-          setFeedDetails({username:'Username already used' || ''})
-          setFeedDetails({email:'Email already used' || ''})
-          setFeedDetails({conPass:'Password not matching' || ''})
-        } 
-        else if(perAcc.email !== account.email && 
-            perAcc.username !== account.username &&
-            perAcc.password == perAcc.conPass) {
-          accCreated.push(perAcc)
-          localStorage.setItem('accounts', JSON.stringify(accCreated))
+        if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''})
+        } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'}) 
         }
+        
+        if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''})
+        } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'}) 
+        }
+        
+        if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'})
+        } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''}) 
+        } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'}) 
+        } 
       })
-      // console.log(accFromLocal)
+      accCreated.push(perAcc)
+      localStorage.setItem('accounts', JSON.stringify(accCreated))
     }
   }
 
