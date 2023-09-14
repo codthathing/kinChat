@@ -54,9 +54,12 @@ const SignComp = () => {
         } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
           setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'}) 
         } 
+        
+        if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
+          accCreated.push(perAcc)
+          localStorage.setItem('accounts', JSON.stringify(accCreated))  
+        }
       })
-      accCreated.push(perAcc)
-      localStorage.setItem('accounts', JSON.stringify(accCreated))
     }
   }
 
