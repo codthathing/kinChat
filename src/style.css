@@ -9,7 +9,6 @@ body {
 }
 
 #navHead {
-  padding: 1rem 1rem 1rem 0.5rem;
   border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
@@ -19,19 +18,14 @@ body {
 }
 
 #logo {
-  font-size: 1.25rem;
   color: red;
 }
 
 #navIcon {
-  font-size: 1rem;
   cursor: pointer;
 }
 
 #navMenuDiv {
-  top: 3.5rem;
-  right: 1rem;
-  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   background-color: white;
   color: red;
   height: fit-content;
@@ -47,12 +41,7 @@ body {
 }
 
 #navMenuDiv > p > a {
-  font-size: 0.75rem;
   color: red;
-}
-
-#navMenuDiv > p {
-  margin: 0.25rem 0;
 }
 
 .signSections {
@@ -64,20 +53,12 @@ body {
 }
 
 .mainDiv {
-  width: 80%;
-  margin-top: 10vh;
   height: fit-content;
 }
 
 .signHead {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
   color: red;
   text-align: center;
-}
-
-.signSec {
-  margin: 0.5rem 0;
 }
 
 .signDiv {
@@ -86,18 +67,12 @@ body {
   justify-content: center;
 }
 
-.signIcon {
-  font-size: 0.75rem;
-  padding: 1rem 1.25rem;
-  border-radius: 0.5rem 0 0 0.5rem;
+.signIcon{
   background-color: white;
   color: red;
 }
 
 .signInput {
-  padding: 1rem 1.5rem 1rem 1rem;
-  font-size: 0.75rem;
-  border-radius: 0 0.5rem 0.5rem 0;
   letter-spacing: 1px;
   border: hidden;
   outline: none;
@@ -106,14 +81,9 @@ body {
 
 .signText {
   color: red;
-  font-size: 0.75rem;
 }
 
 .signBtns {
-  margin-top: 1rem;
-  border-radius: 0.5rem;
-  padding: 0.75rem 0;
-  font-size: 1rem;
   border: hidden;
   width: 100%;
   background-color: white;
@@ -136,21 +106,189 @@ body {
 }
 
 .logSpan {
-  padding: 1rem 1.5rem 1rem 1rem;
-  font-size: 0.75rem;
-  border-radius: 0 0.5rem 0.5rem 0;
   letter-spacing: 1px;
   background-color: white;
   text-align: start;
   width: 100%;
 }
 
-#logText {
+#logText{
   text-align: center;
-  font-size: 1rem;
-  margin-top: 1rem;
 }
 
 #logLink {
   color: red;
+}
+
+
+
+
+
+
+
+
+
+#navHead {
+  padding: 1rem 1rem 1rem 0.5rem;
+}
+
+#logo {
+  font-size: 1.25rem;
+}
+
+#navIcon {
+  font-size: 1rem;
+}
+
+#navMenuDiv {
+  top: 3.5rem;
+  right: 1rem;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+}
+
+#navMenuDiv > p > a {
+  font-size: 0.75rem;
+}
+
+#navMenuDiv > p {
+  margin: 0.25rem 0;
+}
+
+.mainDiv {
+  width: 80%;
+  margin-top: 10vh;
+}
+
+.signHead {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.signSec {
+  margin: 0.5rem 0;
+}
+
+.signIcon {
+  font-size: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.signInput {
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.signText {
+  font-size: 0.75rem;
+}
+
+.signBtns {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+}
+
+.logSpan {
+  padding: 1rem 1.5rem 1rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+#logText {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+@media all and (max-width: 767px) {
+  #navHead {
+    padding: 1rem 1rem 1rem 0.5rem;
+  }
+
+  #logo {
+    font-size: 1.25rem;
+  }
+
+  #navIcon {
+    font-size: 1rem;
+  }
+
+  #navMenuDiv {
+    top: 3.5rem;
+    right: 1rem;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  }
+
+  #navMenuDiv > p > a {
+    font-size: 0.75rem;
+  }
+  
+  #navMenuDiv > p {
+    margin: 0.25rem 0;
+  }
+
+  .mainDiv {
+    width: 80%;
+    margin-top: 10vh;
+  }
+
+  .signHead {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .signSec {
+    margin: 0.5rem 0;
+  }
+  
+  .signIcon {
+    font-size: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  .signInput {
+    padding: 1rem 1.5rem 1rem 1rem;
+    font-size: 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  .signText {
+    font-size: 0.75rem;
+  }
+
+  .signBtns {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .logSpan {
+    padding: 1rem 1.5rem 1rem 1rem;
+    font-size: 0.75rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  
+  #logText {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+
+
+
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+
+
+
+
+@media all and (min-width: 1024px) {
+
 }
