@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "../link";
 
 // localStorage.clear()
@@ -27,6 +27,7 @@ const SignComp = () => {
   const createAcc = (e) => {
     e.preventDefault();
     if(accDetails.email && accDetails.password && accDetails.conPass && accDetails.username) {
+      let unsavedAcct = JSON.parse(localStorage.getItem('accounts') || `[]`)
       let perAcc = {
         id: accCreated.length,
         email: accDetails.email,
@@ -56,14 +57,14 @@ const SignComp = () => {
         } 
         
         if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
-          accCreated.push(perAcc);
-          localStorage.setItem('accounts', JSON.stringify(accCreated));
+          unsavedAcct.push(perAcc);
+          localStorage.setItem('accounts', JSON.stringify(unsavedAcct));
           setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
           setAccDetails({email:'', password:'', conPass:'', username:''})
         };
       })
-      // accCreated.push(perAcc)      
-      // localStorage.setItem('accounts', JSON.stringify(accCreated))
+      // unsavedAcct.push(perAcc)      
+      // localStorage.setItem('accounts', JSON.stringify(unsavedAcct))
     }
   }
 
