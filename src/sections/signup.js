@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "../link";
+import unknown from './unknown_black.jpeg'
 
 // localStorage.clear()
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
@@ -22,7 +23,7 @@ const SignComp = () => {
     email:'',
     conPass:'',
     username:''
-  })
+  });
 
   const createAcc = (e) => {
     e.preventDefault();
@@ -33,38 +34,40 @@ const SignComp = () => {
         email: accDetails.email,
         password: accDetails.password,
         conPass: accDetails.conPass,
-        username: accDetails.username
+        username: accDetails.username,
+        profile: unknown
       };
-      accCreated.map((account) => {
-        if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
-        } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-        }
+      // accCreated.map((account) => {
+      //   if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
+      //   } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+      //   }
         
-        if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
-        } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-        }
+      //   if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
+      //   } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+      //   }
         
-        if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
-        } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
-        } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-          setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
-        } 
+      //   if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
+      //   } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
+      //   } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+      //     setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
+      //   } 
         
-        if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
-          unsavedAcct.push(perAcc);
-          localStorage.setItem('accounts', JSON.stringify(unsavedAcct));
-          setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
-          setAccDetails({email:'', password:'', conPass:'', username:''})
-        };
-      })
-      // unsavedAcct.push(perAcc)      
-      // localStorage.setItem('accounts', JSON.stringify(unsavedAcct))
+      //   if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
+      //     unsavedAcct.push(perAcc);
+      //     localStorage.setItem('accounts', JSON.stringify(unsavedAcct));
+      //     setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
+      //     setAccDetails({email:'', password:'', conPass:'', username:''})
+      //   };
+      // })
+      unsavedAcct.push(perAcc)     
+      setAccDetails({email:'', password:'', conPass:'', username:''}) 
+      localStorage.setItem('accounts', JSON.stringify(unsavedAcct))
     }
   }
 
@@ -73,6 +76,7 @@ const SignComp = () => {
       <main className="mainDiv">
         <h1 className="signHead">Create an account!</h1>
           <form onSubmit={createAcc}>
+          {/* <form> */}
             <section className="signSec">
               <div className="signDiv">
                 <i className="signIcon">E</i>
@@ -133,8 +137,7 @@ const SignComp = () => {
             </section>
         
             <button type="submit" className="signBtns" id="sigBtn">
-              {/* <Link href={entEmail} id="sigLink">Create account</Link> */}
-              Create account
+              <Link href="/email" id="sigLink">Create account</Link>
             </button>
           </form>
 
