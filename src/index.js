@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './style.css'
+import './style.css';
 import NavComp from './sections/nav';
-import SignComp from './sections/signup';
+import SignComp from './sections/signup/signup';
 import LoginComp from './sections/login';
-import MessComp from './sections/message';
+import MessComp from './sections/message/message';
 import Email from './sections/email';
 
 const Default = () => {

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 const NavComp = () => {
 
+  const [showNav, setShowNav] = useState(false)
+
   const showMenu = () => {
-    document.getElementById("navMenuDiv").classList.toggle("openNavMenu")
+    if(showNav) {
+      setShowNav(false)
+    } else if (!showNav) {
+      setShowNav(true)
+    }
   }
 
   return (
@@ -12,11 +18,13 @@ const NavComp = () => {
         <h1 id="logo">kinChat</h1>
         <aside id="navMenu">
           <i id="navIcon" onClick={showMenu}>i</i>
-          <div id="navMenuDiv">
-            <p><a href="#">Upload Profile</a></p>
-            <p><a href="#">Invite A Friend</a></p>
-            <p><a href="#">Language</a></p>
-          </div>
+          {showNav && 
+            <div id="navMenuDiv">
+              <p><a href="#">Upload Profile</a></p>
+              <p><a href="#">Invite A Friend</a></p>
+              <p><a href="#">Language</a></p>
+            </div>
+          }
         </aside>
       </nav>
     </>

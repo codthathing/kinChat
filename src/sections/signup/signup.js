@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "../link";
-import unknown from './unknown_black.jpeg'
+import unknown from '../unknown/unknown_black.jpeg'
 
 // localStorage.clear()
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const SignComp = () => {
-
+ 
   const [accDetails, setAccDetails] = useState(
     { email:'', 
       password:'',

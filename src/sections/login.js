@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "../link";
+import { Link } from "./link";
 
 const LoginComp = () => {
 
@@ -23,7 +23,7 @@ const LoginComp = () => {
                 <span className="logSpan">Login in with Email</span>
               </button>
             </div>
-          </section>
+          </section> 
         </div>
         <p id="logText">No account yet? <Link href="/signup" id="logLink">Sign Up</Link></p>
       </main>
