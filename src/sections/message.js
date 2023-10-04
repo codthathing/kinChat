@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import unknown from './unknown_black.jpeg'
 import profile from './profile_pic.jpg'
 
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const MessComp = () => {
 
-  const [image, setImage] = useState(unknown)
+  const [image, setImage] = useState(profile)
   const [file, setFile] = useState(null)
+  const [name, setName] = useState("Username")
 
+  accFromLocal.map((item) => {
+    const {id, username, profile} = item
+  })
+
+  const updateUser = useRef()
+  // useEffect(() => {
+  //   updateUser.current.innerText = accFromLocal
+  //     .filter((item) => item.id == 0)
+  //     .map((item) => {
+  //       return item.username
+  //     })
+  // })
+  const UpdName = () => {
+    accFromLocal
+      .filter((item) => item.id == 0)
+      .map((item) => {
+        return item.username
+      })
+  }
+  
+
+  const changeProfile = (id) => {
+    let newProfile = accFromLocal
+      .filter((item) => id == item.id)
+      .map((item) => item.profile == image)
+  }
 
   const UploadDiv = () => {
     return (
@@ -21,9 +48,9 @@ const MessComp = () => {
               }
             }}
           />
-          <img src={image} alt="" id="updImg"/>
+          <img src={image} alt={file} id="updImg"/>
         </form>
-        <h1 id="updUser">Username</h1>
+        <h1 id="updUser"><UpdName/></h1>
         <p id="updPara">Click on profile picture above to update your profile.</p>
         <div id="updOptDiv">
           <span className="updOptBtns" id="updSkip">Skip</span>
@@ -32,6 +59,10 @@ const MessComp = () => {
       </div>
     );
   }
+
+
+
+
 
   return (
     <section className="sections" id="mesSec">
