@@ -6,42 +6,35 @@ import SignComp from './sections/signup/signup';
 import LoginComp from './sections/login';
 import MessComp from './sections/message/message';
 import Email from './sections/email';
+import { NavigateContext } from './sections/navContext';
 
+// localStorage.clear();
+let pageFromLocal = JSON.parse(localStorage.getItem("currentPage"))
 const Default = () => {
+  const [navigate, setNavigate] = useState(pageFromLocal)
+  useEffect(() => {
+    localStorage.setItem("currentPage", JSON.stringify(navigate))
+  }, [navigate])
 
-  const Route = ({ path, children }) => {
-    const [link, setLink] = useState(window.location.pathname)
-    useEffect(() => {
-      const onLink = () => {
-        setLink(window.location.pathname)
-      }
-      window.addEventListener('popstate', onLink)
-      return () => {
-        window.removeEventListener('popstate', onLink)
-      }
-    }, [])
-
-    return link === path ? children : null;
+  const NavFunc = () => {
+    if(navigate == "LOGIN") {
+      return ( <LoginComp/> );
+    } if (navigate == "SIGNUP") {
+      return ( <SignComp/> );
+    } if (navigate == "EMAIL") {
+      return ( <Email/> );
+    } if (navigate == "MESSAGE") {
+      return ( <MessComp/> );
+    }
   }
 
   return (
-    <>
+    <NavigateContext.Provider value={{navigate, setNavigate}}>
       <main id="body">
         <NavComp/>
-        <Route path="/">
-          <LoginComp/>
-        </Route>
-        <Route path="/signup">
-          <SignComp/>
-        </Route>
-        <Route path="/email">
-          <Email/>
-        </Route>
-        <Route path="/message">
-          <MessComp/>
-        </Route>
+        <NavFunc/> 
       </main>
-    </>
+    </NavigateContext.Provider>
   );
 };
 

@@ -1,7 +1,18 @@
-import React from "react";
-import { Link } from "./link";
+import React, { useContext } from "react";
+import { NavigateContext } from "./navContext";
 
 const LoginComp = () => {
+  const { setNavigate, setShowPage } = useContext(NavigateContext);
+
+  const NavToSignUp = () => {
+    setNavigate("SIGNUP");
+    setShowPage("SIGNUP")
+  }
+
+  const NavToMessage = () => {
+    setNavigate("MESSAGE")
+    setShowPage("MESSAGE")
+  }
 
   return (
     <section className="sections signSections" id="logSec">
@@ -12,7 +23,7 @@ const LoginComp = () => {
             <div className="signDiv">
               <button className="logBtn">
                 <i className="signIcon">G</i>
-                <span className="logSpan">Login in with Google</span>
+                <span onClick={NavToMessage} className="logSpan">Login in with Google</span>
               </button>
             </div>
           </section>
@@ -25,7 +36,7 @@ const LoginComp = () => {
             </div>
           </section> 
         </div>
-        <p id="logText">No account yet? <Link href="/signup" id="logLink">Sign Up</Link></p>
+        <p id="logText">No account yet? <span onClick={NavToSignUp} id="logLink">Sign Up</span></p>
       </main>
     </section>
   );

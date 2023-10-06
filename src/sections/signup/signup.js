@@ -1,10 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "../link";
-import unknown from '../unknown/unknown_black.jpeg'
+import React, { useContext, useState } from "react";
+import unknown from '../unknown/unknown_black.jpeg';
+import { NavigateContext } from "../navContext";
 
 // localStorage.clear()
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const SignComp = () => {
+
+  const { setNavigate, setShowPage } = useContext(NavigateContext)
+  const NavToEmail = () => {
+    setNavigate("EMAIL")
+    setShowPage("EMAIL")
+  }
+
+  const NavToLogin = () => {
+    setNavigate("LOGIN")
+    setShowPage("LOGIN")
+  }
+
  
   const [accDetails, setAccDetails] = useState(
     { email:'', 
@@ -73,10 +85,10 @@ const SignComp = () => {
 
   return (
     <section className="sections signSections" id="sigSec">
+      <i onClick={NavToLogin} className="fa-solid fa-chevron-left" id="bacToLog"></i>
       <main className="mainDiv">
         <h1 className="signHead">Create an account!</h1>
           <form onSubmit={createAcc}>
-          {/* <form> */}
             <section className="signSec">
               <div className="signDiv">
                 <i className="signIcon">E</i>
@@ -136,8 +148,8 @@ const SignComp = () => {
               <p className="signText">{feedDetails.username}</p>
             </section>
         
-            <button type="submit" className="signBtns" id="sigBtn">
-              <Link href="/email" id="sigLink">Create account</Link>
+            <button type="submit" onClick={NavToEmail} className="signBtns" id="sigBtn">
+              Create account
             </button>
           </form>
 

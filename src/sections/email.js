@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NavigateContext } from "./navContext";
 
 const Email = () => {
+
+  const { setNavigate, setShowPage } = useContext(NavigateContext)
+  const NavToLogin = () => {
+    setNavigate("LOGIN")
+    setShowPage("LOGIN")
+  }
+
   return (
     <main id="mainVer">
       <h1 id="verHead">Verify Your E-mail Address</h1>
@@ -8,9 +16,9 @@ const Email = () => {
         Hi,<br/> Verification E-mail sent to <b>akinwunmiolusegun277@gmail</b>. Click on the button below to verify your 
         E-mail Address
       </p>
-      <button id="verBtn">Verify E-mail</button>
+      <button onClick={NavToLogin} id="verBtn">Verify E-mail</button>
     </main>
-  );
+  ); 
 }
 
 export default Email;
