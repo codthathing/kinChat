@@ -6,12 +6,15 @@ import SignComp from './sections/signup/signup';
 import LoginComp from './sections/login';
 import MessComp from './sections/message/message';
 import Email from './sections/email';
-import { NavigateContext } from './sections/navContext';
+import { NavigateContext } from './sections/navigateContext';
 
 // localStorage.clear();
+let perAccFromLocal = JSON.parse(localStorage.getItem('perAccount') || `{}`);
 let pageFromLocal = JSON.parse(localStorage.getItem("currentPage"))
 const Default = () => {
   const [navigate, setNavigate] = useState(pageFromLocal)
+  const [showNav, setShowNav] = useState(false)
+  const [perProfile, setPerProfile] = useState(perAccFromLocal)
   useEffect(() => {
     localStorage.setItem("currentPage", JSON.stringify(navigate))
   }, [navigate])
@@ -29,7 +32,7 @@ const Default = () => {
   }
 
   return (
-    <NavigateContext.Provider value={{navigate, setNavigate}}>
+    <NavigateContext.Provider value={{navigate, setNavigate, showNav, setShowNav, perProfile, setPerProfile}}>
       <main id="body">
         <NavComp/>
         <NavFunc/> 

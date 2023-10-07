@@ -38,6 +38,7 @@ body {
 #navMenuDiv > p {
   color: red;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .signSections {

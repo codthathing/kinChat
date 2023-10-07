@@ -1,22 +1,23 @@
 import React, { useContext, useState } from "react";
-import { FluncUpdMess } from './mesContext'
+import { FluncUpdMess } from './mesContext';
+import { NavigateContext } from "../navigateContext";
 
-let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
+
 const UploadDiv = () => {
 
   const { setShowMess, setShowProUpd } = useContext(FluncUpdMess)
+  const { perProfile, setPerProfile } = useContext(NavigateContext)
 
-  const [image, setImage] = useState(accFromLocal.filter((item) => item.id == 0).map((item) => item.profile))
+  const [image, setImage] = useState(perProfile.profile)
+  const [user, setUser] = useState(perProfile.username)
   const [file, setFile] = useState(null)
-  
+
   const changeProfile = () => {
-    let newProfile = Object.assign([], accFromLocal);
-    newProfile = accFromLocal.concat();
-    newProfile.filter((item) => item.id == 0).map((item) => item.profile = image)
-    localStorage.setItem('accounts', JSON.stringify(newProfile)) 
-    newProfile = JSON.parse(localStorage.getItem('accounts'))
-    let updProfile = newProfile.filter((item) => item.id == 0).map((item) => item.profile = image)
-    setImage(updProfile)
+    let newProfile = Object.assign({}, perProfile);
+    newProfile.profile = image
+    localStorage.setItem("perAccount", JSON.stringify(newProfile))
+    // let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
+    // setPerProfile(prePerAcc)
     setTimeout(() => {
       setShowMess(true)
       setShowProUpd(false)
@@ -45,11 +46,7 @@ const UploadDiv = () => {
           />
           <img src={image} alt={file} id="updImg"/>
         </form>
-        {accFromLocal.filter((item) => item.id == 0).map((item) => {
-          return (
-            <h1 id="updUser">{item.username}</h1>
-          )
-        })}
+        <h1 id="updUser">{user}</h1>
         <p id="updPara">Click on profile picture above to update your profile.</p>
         <div id="updOptDiv">
           <span className="updOptBtns" onClick={skipProfile} id="updSkip">Skip</span>

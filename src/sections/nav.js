@@ -1,38 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
-import { NavigateContext } from "./navContext";
+import React, { useContext } from "react";
+import { NavigateContext } from "./navigateContext";
 
-// localStorage.clear();
-let pageFromLocal = JSON.parse(localStorage.getItem("navCurrentPage"))
 const NavComp = () => {
 
-  const [showNav, setShowNav] = useState(false)
-  const { setNavigate } = useContext(NavigateContext)
-  const [showPage, setShowPage] = useState(pageFromLocal)
-  useEffect(() => {
-    localStorage.setItem("navCurrentPage", JSON.stringify(showPage))
-  }, [showPage])
+  const { navigate, setNavigate, showNav, setShowNav } = useContext(NavigateContext)
 
   const showMenu = () => {
     if(showNav) {
       setShowNav(false)
-    } else if (!showNav) {
+    } else if (!showNav) { 
       setShowNav(true)
     }
-  }
+  } 
 
   const NavToLogin = () => {
     setNavigate("LOGIN")
-    setShowPage("LOGIN")
+    setShowNav(false)
   }
 
   const NavShowed = () => {
-    if(showPage == "LOGIN") {
+    if(navigate == "LOGIN") {
       return ( <p>Language</p> );
-    } if (showPage == "SIGNUP") {
+    } if (navigate == "SIGNUP") {
       return ( <p>Language</p> );
-    } if (showPage == "EMAIL") {
+    } if (navigate == "EMAIL") {
       return ( <p>Language</p> );
-    } if(showPage == "MESSAGE") {
+    } if(navigate == "MESSAGE") {
       return (
         <>
           <p>Update Profile</p>
@@ -45,7 +38,7 @@ const NavComp = () => {
   }
 
   return (
-    <NavigateContext.Provider value={{showPage, setShowPage}}>
+    <>
       <nav id="navHead">
         <h1 id="logo">kinChat</h1>
         <aside id="navMenu">
@@ -57,7 +50,7 @@ const NavComp = () => {
           }
         </aside>
       </nav>
-    </NavigateContext.Provider>
+    </>
   );
 }
 

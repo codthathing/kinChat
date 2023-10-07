@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import MessDiv from "./messDiv";
 import UploadDiv from "./profile";
 import { FluncUpdMess } from "./mesContext";
-import { NavigateContext } from "../navContext";
 
 const MessComp = () => {
 

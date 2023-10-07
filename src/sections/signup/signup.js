@@ -1,23 +1,19 @@
 import React, { useContext, useState } from "react";
 import unknown from '../unknown/unknown_black.jpeg';
-import { NavigateContext } from "../navContext";
+import { NavigateContext } from "../navigateContext";
 
 // localStorage.clear()
+// localStorage.removeItem("perAccount")
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const SignComp = () => {
 
-  const { setNavigate, setShowPage } = useContext(NavigateContext)
-  const NavToEmail = () => {
-    setNavigate("EMAIL")
-    setShowPage("EMAIL")
-  }
+  const { setNavigate, setShowNav, setPerProfile } = useContext(NavigateContext)
 
   const NavToLogin = () => {
-    setNavigate("LOGIN")
-    setShowPage("LOGIN")
+    setNavigate("LOGIN");
+    setShowNav(false);
   }
 
- 
   const [accDetails, setAccDetails] = useState(
     { email:'', 
       password:'',
@@ -40,7 +36,6 @@ const SignComp = () => {
   const createAcc = (e) => {
     e.preventDefault();
     if(accDetails.email && accDetails.password && accDetails.conPass && accDetails.username) {
-      let unsavedAcct = JSON.parse(localStorage.getItem('accounts') || `[]`)
       let perAcc = {
         id: accCreated.length,
         email: accDetails.email,
@@ -49,43 +44,49 @@ const SignComp = () => {
         username: accDetails.username,
         profile: unknown
       };
-      // accCreated.map((account) => {
-      //   if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
-      //   } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-      //   }
+      accCreated.map((account) => {
+        if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
+        } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+        }
         
-      //   if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
-      //   } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-      //   }
+        if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
+        } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+        }
         
-      //   if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
-      //   } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
-      //   } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-      //     setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
-      //   } 
+        if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
+        } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
+        } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
+        } 
         
-      //   if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
-      //     unsavedAcct.push(perAcc);
-      //     localStorage.setItem('accounts', JSON.stringify(unsavedAcct));
-      //     setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
-      //     setAccDetails({email:'', password:'', conPass:'', username:''})
-      //   };
-      // })
-      unsavedAcct.push(perAcc)     
-      setAccDetails({email:'', password:'', conPass:'', username:''}) 
-      localStorage.setItem('accounts', JSON.stringify(unsavedAcct))
+        if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
+          localStorage.setItem("perAccount", JSON.stringify(perAcc))
+          let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
+          setPerProfile(prePerAcc)
+          setNavigate("EMAIL");
+          setShowNav(false);
+
+          accCreated.push(perAcc);
+          localStorage.setItem('accounts', JSON.stringify(accCreated));
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
+          setAccDetails({email:'', password:'', conPass:'', username:''})
+        };
+      })
+      // localStorage.setItem("perAccount", JSON.stringify(perAcc))
+      // accCreated.push(perAcc);
+      // localStorage.setItem('accounts', JSON.stringify(accCreated));
     }
   }
 
   return (
     <section className="sections signSections" id="sigSec">
-      <i onClick={NavToLogin} className="fa-solid fa-chevron-left" id="bacToLog"></i>
+      <i onClick={NavToLogin} className="fa-solid fa-chevron-left" id="bacToLog">&times;</i>
       <main className="mainDiv">
         <h1 className="signHead">Create an account!</h1>
           <form onSubmit={createAcc}>
@@ -148,7 +149,7 @@ const SignComp = () => {
               <p className="signText">{feedDetails.username}</p>
             </section>
         
-            <button type="submit" onClick={NavToEmail} className="signBtns" id="sigBtn">
+            <button type="submit" className="signBtns" id="sigBtn">
               Create account
             </button>
           </form>
