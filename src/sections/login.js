@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import { NavigateContext } from "./navigateContext";
+// import { NavContext } from "./nav/navContext";
 
 const LoginComp = () => {
-  const { setNavigate , setShowNav} = useContext(NavigateContext);
+  const { setNavigate } = useContext(NavigateContext);
+  // const { setShowNav } = useContext(NavContext)
 
   const NavToSignUp = () => {
     setNavigate("SIGNUP");
-    setShowNav(false);
+    // setShowNav(false);
   }
 
   const NavToMessage = () => {
     setNavigate("MESSAGE");
-    setShowNav(false);
+    // setShowNav(false);
   }
 
   return (

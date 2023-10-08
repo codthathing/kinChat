@@ -7,11 +7,11 @@ import { NavigateContext } from "../navigateContext";
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const SignComp = () => {
 
-  const { setNavigate, setShowNav, setPerProfile } = useContext(NavigateContext)
+  const { setNavigate, setPerProfile } = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setNavigate("LOGIN");
-    setShowNav(false);
+    // setShowNav(false);
   }
 
   const [accDetails, setAccDetails] = useState(
@@ -70,7 +70,7 @@ const SignComp = () => {
           let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
           setPerProfile(prePerAcc)
           setNavigate("EMAIL");
-          setShowNav(false);
+          // setShowNav(false);
 
           accCreated.push(perAcc);
           localStorage.setItem('accounts', JSON.stringify(accCreated));

@@ -1,4 +1,3 @@
 import { createContext } from "react";
 
-const NavigateContext = createContext(); 
-export { NavigateContext };
+export const NavigateContext = createContext(); 

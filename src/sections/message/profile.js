@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { FluncUpdMess } from './mesContext';
 import { NavigateContext } from "../navigateContext";
 
-
+// let perAccFromLocal = JSON.parse(localStorage.getItem('perAccount') || `{}`);
 const UploadDiv = () => {
 
   const { setShowMess, setShowProUpd } = useContext(FluncUpdMess)
-  const { perProfile, setPerProfile } = useContext(NavigateContext)
+  const { perProfile } = useContext(NavigateContext)
 
   const [image, setImage] = useState(perProfile.profile)
   const [user, setUser] = useState(perProfile.username)
@@ -16,8 +16,6 @@ const UploadDiv = () => {
     let newProfile = Object.assign({}, perProfile);
     newProfile.profile = image
     localStorage.setItem("perAccount", JSON.stringify(newProfile))
-    // let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
-    // setPerProfile(prePerAcc)
     setTimeout(() => {
       setShowMess(true)
       setShowProUpd(false)

@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
-import { NavigateContext } from "./navigateContext";
+import React, { useContext, useState } from "react";
+import { NavigateContext } from "../navigateContext";
+import { NavContext } from "./navContext";
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, showNav, setShowNav } = useContext(NavigateContext)
+  const { navigate, setNavigate, setPerProfile } = useContext(NavigateContext)
+  const [showNav, setShowNav] = useState(false)
 
   const showMenu = () => {
     if(showNav) {
@@ -16,6 +18,8 @@ const NavComp = () => {
   const NavToLogin = () => {
     setNavigate("LOGIN")
     setShowNav(false)
+    let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
+    setPerProfile(prePerAcc)
   }
 
   const NavShowed = () => {
@@ -38,7 +42,7 @@ const NavComp = () => {
   }
 
   return (
-    <>
+    <NavContext.Provider value={{showNav, setShowNav}}>
       <nav id="navHead">
         <h1 id="logo">kinChat</h1>
         <aside id="navMenu">
@@ -50,7 +54,7 @@ const NavComp = () => {
           }
         </aside>
       </nav>
-    </>
+    </NavContext.Provider>
   );
 }
 
