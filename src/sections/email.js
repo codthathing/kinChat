@@ -3,9 +3,9 @@ import { NavigateContext } from "./navigateContext";
 
 const Email = () => {
 
-  const { setNavigate } = useContext(NavigateContext)
+  // const { setNavigate } = useContext(NavigateContext)
   const NavToLogin = () => {
-    setNavigate("LOGIN");
+    // setNavigate("LOGIN");
     // setShowNav(false);
   }
 

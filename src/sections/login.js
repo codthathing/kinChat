@@ -1,18 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavigateContext } from "./navigateContext";
 // import { NavContext } from "./nav/navContext";
 
 const LoginComp = () => {
-  const { setNavigate } = useContext(NavigateContext);
+  const { iniState } = useContext(NavigateContext);
+  const [navDiv, setNavDiv] = useState(iniState.navPage)
+  const [navToPage, setNavToPage] = useState(iniState.navPage)
   // const { setShowNav } = useContext(NavContext)
 
   const NavToSignUp = () => {
-    setNavigate("SIGNUP");
+    // dispatch({display:"TO_SIGNUP"});
+    setNavToPage("SIGNUP")
+    setNavDiv(false)
     // setShowNav(false);
   }
 
   const NavToMessage = () => {
-    setNavigate("MESSAGE");
+    // dispatch({display:"TO_MESSAGE"});
+    setNavToPage("MESSAGE")
+    setNavDiv(false)
     // setShowNav(false);
   }
 

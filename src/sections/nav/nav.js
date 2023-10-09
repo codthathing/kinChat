@@ -4,8 +4,8 @@ import { NavContext } from "./navContext";
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, setPerProfile } = useContext(NavigateContext)
-  const [showNav, setShowNav] = useState(false)
+  const { iniState, setPerProfile } = useContext(NavigateContext)
+  const [showNav, setShowNav] = useState(iniState.navPage)
 
   const showMenu = () => {
     if(showNav) {
@@ -16,29 +16,29 @@ const NavComp = () => {
   } 
 
   const NavToLogin = () => {
-    setNavigate("LOGIN")
+    // setNavigate("LOGIN")
     setShowNav(false)
     let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
     setPerProfile(prePerAcc)
   }
 
   const NavShowed = () => {
-    if(navigate == "LOGIN") {
-      return ( <p>Language</p> );
-    } if (navigate == "SIGNUP") {
-      return ( <p>Language</p> );
-    } if (navigate == "EMAIL") {
-      return ( <p>Language</p> );
-    } if(navigate == "MESSAGE") {
-      return (
-        <>
-          <p>Update Profile</p>
-          <p>Invite A Friend</p>
-          <p>Language</p>
-          <p onClick={NavToLogin}>Log out</p>
-        </>
-      );
-    }
+    // if(navigate == "LOGIN") {
+    //   return ( <p>Language</p> );
+    // } if (navigate == "SIGNUP") {
+    //   return ( <p>Language</p> );
+    // } if (navigate == "EMAIL") {
+    //   return ( <p>Language</p> );
+    // } if(navigate == "MESSAGE") {
+    //   return (
+    //     <>
+    //       <p>Update Profile</p>
+    //       <p>Invite A Friend</p>
+    //       <p>Language</p>
+    //       <p onClick={NavToLogin}>Log out</p>
+    //     </>
+    //   );
+    // }
   }
 
   return (
@@ -49,6 +49,10 @@ const NavComp = () => {
           <i id="navIcon" onClick={showMenu}>i</i>
           {showNav && 
             <div id="navMenuDiv">
+                        <p>Update Profile</p>
+          <p>Invite A Friend</p>
+          <p>Language</p>
+          <p onClick={NavToLogin}>Log out</p>
               <NavShowed/>
             </div>
           }

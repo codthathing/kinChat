@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import NavComp from './sections/nav/nav';
@@ -12,11 +12,47 @@ import { NavigateContext } from './sections/navigateContext';
 let perAccFromLocal = JSON.parse(localStorage.getItem('perAccount') || `{}`);
 let pageFromLocal = JSON.parse(localStorage.getItem("currentPage"))
 const Default = () => {
+
+
   const [navigate, setNavigate] = useState(pageFromLocal)
   const [perProfile, setPerProfile] = useState(perAccFromLocal)
   useEffect(() => {
-    localStorage.setItem("currentPage", JSON.stringify(navigate))
+    localStorage.setItem("currentPage", JSON.stringify(iniState.curPage))
+    // setTimeout(() => {    
+    //   dispatch({display:"TO_SIGNUP"});
+    // },1000)
   }, [navigate])
+
+  // const reducer = (state, action) => {
+  //   if(action.display == "TO_LOGIN") {
+  //     return ({
+  //       ...state,
+  //       curPage: "LOGIN"
+  //     })
+  //   } if(action.display == "TO_SIGNUP") { 
+  //     return ( {
+  //       ...state,
+  //       curPage: "SIGNUP"
+  //     })
+  //   } if(action.display == "TO_EMAIL") {
+  //     return ( {
+  //       ...state,
+  //       curPage: "EMAIL"
+  //     })
+  //   } if(action.display == "TO_MESSAGE") {
+  //     return ( {
+  //       ...state,
+  //       curPage: "MESSAGE"
+  //     })
+  //   }
+  // }
+
+  const iniState = {
+    curPage: "LOGIN",
+    navPage: false
+  }
+
+  // const [initial, dispatch] = useReducer(reducer, iniState)
 
   const NavFunc = () => {
     if(navigate == "LOGIN") {
@@ -31,7 +67,7 @@ const Default = () => {
   }
 
   return (
-    <NavigateContext.Provider value={{navigate, setNavigate, perProfile, setPerProfile }}>
+    <NavigateContext.Provider value={{iniState, perProfile, setPerProfile }}>
       <main id="body">
         <NavComp/>
         <NavFunc/> 
