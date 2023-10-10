@@ -6,7 +6,8 @@ import { NavigateContext } from "../navigateContext";
 const UploadDiv = () => {
 
   const { setShowMess, setShowProUpd } = useContext(FluncUpdMess)
-  const { perProfile } = useContext(NavigateContext)
+  // const { perProfile } = useContext(NavigateContext)
+  const perProfile = {}
 
   const [image, setImage] = useState(perProfile.profile)
   const [user, setUser] = useState(perProfile.username)

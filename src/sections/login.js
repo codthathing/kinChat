@@ -1,25 +1,17 @@
-import React, { useContext, useState } from "react";
-import { NavigateContext } from "./navigateContext";
-// import { NavContext } from "./nav/navContext";
+import React, { useContext } from "react";
+import { useOptNavProvider } from "./navigateContext";
+
+
 
 const LoginComp = () => {
-  const { iniState } = useContext(NavigateContext);
-  const [navDiv, setNavDiv] = useState(iniState.navPage)
-  const [navToPage, setNavToPage] = useState(iniState.navPage)
-  // const { setShowNav } = useContext(NavContext)
+  const { setNavigate } = useOptNavProvider();
 
   const NavToSignUp = () => {
-    // dispatch({display:"TO_SIGNUP"});
-    setNavToPage("SIGNUP")
-    setNavDiv(false)
-    // setShowNav(false);
+    setNavigate("SIGNUP")
   }
 
   const NavToMessage = () => {
-    // dispatch({display:"TO_MESSAGE"});
-    setNavToPage("MESSAGE")
-    setNavDiv(false)
-    // setShowNav(false);
+    setNavigate("MESSAGE")
   }
 
   return (

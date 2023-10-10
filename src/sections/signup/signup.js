@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import unknown from '../unknown/unknown_black.jpeg';
-import { NavigateContext } from "../navigateContext";
+import { useOptNavProvider } from "../navigateContext";
 
-// localStorage.clear()
-// localStorage.removeItem("perAccount")
+
 let accFromLocal = JSON.parse(localStorage.getItem('accounts') || `[]`);
 const SignComp = () => {
 
-  const { setPerProfile } = useContext(NavigateContext)
+  const {setNavigate } = useOptNavProvider()
 
   const NavToLogin = () => {
-    // setNavigate("LOGIN");
-    // setShowNav(false);
+    setNavigate("LOGIN");
   }
 
   const [accDetails, setAccDetails] = useState(
@@ -26,7 +24,10 @@ const SignComp = () => {
     setAccDetails({...accDetails, [name]:value});
   }
 
-  const [accCreated, setAccCreated] = useState(accFromLocal)
+  const [accCreated, setAccCreated] = useState(accFromLocal ? accCreated : "[]")
+  useEffect(() => {
+    localStorage.setItem("accounts", JSON.stringify(accCreated))
+  }, [accCreated])
   const [feedDetails, setFeedDetails] = useState({
     email:'',
     conPass:'',
@@ -68,9 +69,8 @@ const SignComp = () => {
         if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
           localStorage.setItem("perAccount", JSON.stringify(perAcc))
           let prePerAcc = JSON.parse(localStorage.getItem("perAccount"))
-          setPerProfile(prePerAcc)
-          // setNavigate("EMAIL");
-          // setShowNav(false);
+          // setPerProfile(prePerAcc)
+          setNavigate("EMAIL");
 
           accCreated.push(perAcc);
           localStorage.setItem('accounts', JSON.stringify(accCreated));

@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { NavigateContext } from "./navigateContext";
+import { useOptNavProvider } from "./navigateContext";
 
 const Email = () => {
 
-  // const { setNavigate } = useContext(NavigateContext)
+  const { setNavigate } = useOptNavProvider()
   const NavToLogin = () => {
-    // setNavigate("LOGIN");
-    // setShowNav(false);
+    setNavigate("LOGIN");
   }
 
   return (
