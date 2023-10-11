@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
-import { useOptNavProvider } from "./navigateContext";
+import { NavigateContext } from "./navigateContext";
 
 
 
 const LoginComp = () => {
-  const { setNavigate } = useOptNavProvider();
+  const { setNavigate, setShowNav } = useContext(NavigateContext);
 
   const NavToSignUp = () => {
-    setNavigate("SIGNUP")
+    setNavigate("SIGNUP");
+    setShowNav(false)
   }
 
   const NavToMessage = () => {
-    setNavigate("MESSAGE")
+    setNavigate("MESSAGE");
+    setShowNav(false)
   }
 
   return (

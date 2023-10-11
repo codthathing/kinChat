@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
-import { useOptNavProvider } from "../navigateContext";
+import { NavigateContext } from "../navigateContext";
 
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, showNav, setShowNav } = useOptNavProvider()
+  const { navigate, setNavigate, showNav, setShowNav } = useContext(NavigateContext)
 
   const showMenu = () => {
     if(showNav) {
       setShowNav(false)
-    } else if (showNav == false) { 
+    } else if (!showNav) { 
       setShowNav(true)
     }
   } 
