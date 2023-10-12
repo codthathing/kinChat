@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FluncUpdMess } from './mesContext';
 import { NavigateContext } from "../navigateContext";
 
@@ -13,7 +13,7 @@ const UploadDiv = () => {
 
   const changeProfile = () => {
     let newProfile = Object.assign({}, perProfile);
-    newProfile.profile = image
+    newProfile.profile = image;
     setPerProfile(newProfile)
     setTimeout(() => {
       setShowMess(true)
