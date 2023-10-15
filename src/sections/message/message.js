@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import MessDiv from "./messDiv";
 import UploadDiv from "./profile";
-import { FluncUpdMess } from "./mesContext";
+import { NavigateContext } from "../navigateContext";
 
 const MessComp = () => {
 
-  const [showProUpd, setShowProUpd] = useState(true)
-  const [showMess, setShowMess] = useState(false)
+  const { showPro } = useContext(NavigateContext)
+
+  const MessProDivs = () => {
+    if(showPro == "profile") {
+      return ( <UploadDiv/> );
+    } else if(showPro == "message") {
+      return ( <MessDiv/> );
+    }
+  }
+
 
 
   return (
-    <FluncUpdMess.Provider value={{showProUpd, setShowProUpd, showMess, setShowMess}}>  
+    <>  
       <section className="sections" id="mesSec">
-        {showProUpd && <UploadDiv/>}
-        {showMess && <MessDiv/>}
+        <MessProDivs/>
       </section>    
-    </FluncUpdMess.Provider>
+    </>
   ); 
 } 
 

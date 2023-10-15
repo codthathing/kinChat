@@ -90,7 +90,10 @@ const SignComp = () => {
 
   return (
     <section className="sections signSections" id="sigSec">
-      <i onClick={NavToLogin} className="fa-solid fa-chevron-left" id="bacToLog">&times;</i>
+      <div onClick={NavToLogin} id="bacLogDiv">
+        <i className="fa-solid fa-chevron-left" id="bacToLog">x</i>
+        <span id="bacToLogSpan">Back</span>
+      </div>
       <main className="mainDiv">
         <h1 className="signHead">Create an account!</h1>
           <form onSubmit={createAcc}>

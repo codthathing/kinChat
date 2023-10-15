@@ -8,13 +8,19 @@ body {
   background-color: rgb(204, 204, 204);
 }
 
+#body {
+  height: 100vh;
+}
+
 #navHead {
   border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: static;
+  position: sticky; 
   top: 0;
+  z-index: 100;
+  background-color: rgb(204, 204, 204);
 }
 
 #logo {
@@ -41,15 +47,30 @@ body {
   cursor: pointer;
 }
 
-.signSections {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
+.sections {
+  overflow-y: auto;
 }
 
 .mainDiv {
   height: fit-content;
   margin: auto;
+}
+
+#bacLogDiv {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.25rem;
+  width: fit-content;
+}
+
+#bacToLog {
+  font-weight: 900;
+}
+
+#bacToLogSpan {
+  
+  font-weight: 700;
 }
 
 .signHead {
@@ -116,6 +137,7 @@ body {
   color: red;
   font-weight: 700;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 #mainVer {
@@ -253,10 +275,16 @@ body {
     margin-top: 10vh;
   }
 
+  #bacLogDiv {
+    margin: 1rem 0 0 1.5rem;
+  }
+
   #bacToLog {
     font-size: 1rem;
-    margin: 1.5rem 0 0 1.5rem;
-    font-weight: 900;
+  }
+
+  #bacToLogSpan {
+    font-size: 0.5rem;
   }
 
   .signHead {

@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavigateContext } from "../navigateContext";
 
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, showNav, setShowNav } = useContext(NavigateContext)
+  const { navigate, setNavigate, showNav, setShowNav, setShowPro } = useContext(NavigateContext)
 
   const showMenu = () => {
     if(showNav) {
@@ -13,6 +13,11 @@ const NavComp = () => {
       setShowNav(true)
     }
   } 
+
+  const NavToPro = () => {
+    setShowPro("profile")
+    setShowNav(false)
+  }
 
   const NavToLogin = () => {
     setNavigate("LOGIN")
@@ -29,7 +34,7 @@ const NavComp = () => {
     } if(navigate == "MESSAGE") {
       return (
         <>
-          <p>Update Profile</p>
+          <p onClick={NavToPro}>Update Profile</p>
           <p>Invite A Friend</p>
           <p>Language</p>
           <p onClick={NavToLogin}>Log out</p>
@@ -43,7 +48,7 @@ const NavComp = () => {
       <nav id="navHead">
         <h1 id="logo">kinChat</h1>
         <aside id="navMenu">
-          <i id="navIcon" onClick={showMenu}>i</i>
+          <i id="navIcon" onClick={showMenu} className="fa-solid fa-ellipsis-vertical">i</i>
           {showNav && 
             <div id="navMenuDiv">
               <NavShowed/>

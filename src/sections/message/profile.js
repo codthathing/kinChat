@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { FluncUpdMess } from './mesContext';
+import React, { useContext, useState } from "react";
 import { NavigateContext } from "../navigateContext";
 
 const UploadDiv = () => {
 
-  const { setShowMess, setShowProUpd } = useContext(FluncUpdMess)
-  const { perProfile, setPerProfile } = useContext(NavigateContext)
+  const { perProfile, setPerProfile, setShowPro } = useContext(NavigateContext)
 
   const [image, setImage] = useState(perProfile.profile)
   const [ user ] = useState(perProfile.username)
@@ -16,15 +14,13 @@ const UploadDiv = () => {
     newProfile.profile = image;
     setPerProfile(newProfile)
     setTimeout(() => {
-      setShowMess(true)
-      setShowProUpd(false)
+      setShowPro("message")
     }, 2500)
   }
 
   const skipProfile = () => {
     setTimeout(() => {
-      setShowMess(true)
-      setShowProUpd(false)
+      setShowPro("message")
     }, 2500)
   }
  

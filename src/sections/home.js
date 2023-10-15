@@ -7,7 +7,6 @@ import Email from "./email";
 import { NavigateContext } from "./navigateContext";
 
 
-// let perAccFromLocal = JSON.parse(localStorage.getItem('perAccount') || `{}`);
 const Home = () => {
 
   const { navigate } = useContext(NavigateContext);  

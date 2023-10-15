@@ -5,6 +5,7 @@ export const NavigateContext = createContext();
 let pageFromLocal = JSON.parse(localStorage.getItem("currentPage"))
 let accFromLocal = JSON.parse(localStorage.getItem('accounts')) || [];
 let perAccFromLocal = JSON.parse(localStorage.getItem("perAccount")) || {};
+let proMessFromLocal = JSON.parse(localStorage.getItem("proMess")) || "profile";
 
 export const OptNavProvider = ({children}) => {
   const [showNav, setShowNav] = useState(false)
@@ -18,10 +19,16 @@ export const OptNavProvider = ({children}) => {
   useEffect(() => {
     localStorage.setItem("perAccount", JSON.stringify(perProfile));
   }, [perProfile])
+  const [ showPro, setShowPro ] = useState(proMessFromLocal)
+  useEffect(() => {
+    localStorage.setItem("proMess", JSON.stringify(showPro))
+  }, [showPro])
 
   return (
     <NavigateContext.Provider value={{showNav, setShowNav, 
-      navigate, setNavigate, accCreated, perProfile, setPerProfile }}>
+      navigate, setNavigate, accCreated, perProfile, setPerProfile,
+      showPro, setShowPro
+       }}>
       {children}
     </NavigateContext.Provider>
   );
