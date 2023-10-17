@@ -9,11 +9,14 @@ let proMessFromLocal = JSON.parse(localStorage.getItem("proMess")) || "profile";
 
 export const OptNavProvider = ({children}) => {
   const [showNav, setShowNav] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
+  const [showMessDiv, setShowMessDiv] = useState(true)
+  const [showInvite, setShowInvite] = useState(false)
   const [navigate, setNavigate] = useState(pageFromLocal ? pageFromLocal : "LOGIN")
   useEffect(() => {
     localStorage.setItem("currentPage", JSON.stringify(navigate));
   }, [navigate])
-  const  [ accCreated ] = useState(accFromLocal)
+  const  [ accCreated, setAccCreated ] = useState(accFromLocal)
   localStorage.setItem("accounts", JSON.stringify(accCreated))
   const [perProfile, setPerProfile] = useState(perAccFromLocal)
   useEffect(() => {
@@ -26,8 +29,9 @@ export const OptNavProvider = ({children}) => {
 
   return (
     <NavigateContext.Provider value={{showNav, setShowNav, 
-      navigate, setNavigate, accCreated, perProfile, setPerProfile,
-      showPro, setShowPro
+      navigate, setNavigate, accCreated, setAccCreated, perProfile, setPerProfile,
+      showPro, setShowPro, showSearch, setShowSearch, showMessDiv, 
+      setShowMessDiv, showInvite, setShowInvite
        }}>
       {children}
     </NavigateContext.Provider>

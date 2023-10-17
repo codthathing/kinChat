@@ -3,8 +3,9 @@ import { NavigateContext } from "./navigateContext";
 
 const Email = () => {
 
-  const { setNavigate, setShowNav } = useContext(NavigateContext)
-  const NavToLogin = () => {
+  const { setNavigate, setShowNav, perProfile } = useContext(NavigateContext)
+  const NavToLogin = (e) => {
+    e.preventDefault();
     setNavigate("LOGIN");
     setShowNav(false);
   }
@@ -13,10 +14,10 @@ const Email = () => {
     <main className="sections" id="mainVer">
       <h1 id="verHead">Verify Your E-mail Address</h1>
       <p id="verPara">
-        Hi,<br/> Verification E-mail sent to <b>akinwunmiolusegun277@gmail</b>. Click on the button below to verify your 
+        Hi,<br/> Verification E-mail sent to <b>{perProfile.email}</b>. Click on the button below to verify your 
         E-mail Address
       </p>
-      <button onClick={NavToLogin} id="verBtn">Verify E-mail</button>
+      <button onClick={NavToLogin} id="verBtn">Resend E-mail</button>
     </main>
   ); 
 }

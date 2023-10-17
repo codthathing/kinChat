@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import MessDiv from "./messDiv";
 import UploadDiv from "./profile";
+import MesSearch from "./mesSearch";
+import MessInvite from "./messInvite";
 import { NavigateContext } from "../navigateContext";
 
 const MessComp = () => {
 
-  const { showPro } = useContext(NavigateContext)
+  const { showPro, showSearch, showMessDiv, showInvite } = useContext(NavigateContext)
 
   const MessProDivs = () => {
     if(showPro == "profile") {
@@ -20,7 +22,9 @@ const MessComp = () => {
   return (
     <>  
       <section className="sections" id="mesSec">
-        <MessProDivs/>
+        {showMessDiv && <MessProDivs/>}
+        {showSearch && <MesSearch/>}
+        {showInvite && <MessInvite/>} 
       </section>    
     </>
   ); 

@@ -3,7 +3,7 @@ import { NavigateContext } from "../navigateContext";
 
 const UploadDiv = () => {
 
-  const { perProfile, setPerProfile, setShowPro } = useContext(NavigateContext)
+  const { accCreated, setAccCreated, perProfile, setPerProfile, setShowPro } = useContext(NavigateContext)
 
   const [image, setImage] = useState(perProfile.profile)
   const [ user ] = useState(perProfile.username)
@@ -13,6 +13,11 @@ const UploadDiv = () => {
     let newProfile = Object.assign({}, perProfile);
     newProfile.profile = image;
     setPerProfile(newProfile)
+    let latUpdtAccts = Object.assign([], accCreated)
+    latUpdtAccts = accCreated.concat()
+    // let updtAccts = latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => acct.profile = image)
+    // setAccCreated(updtAccts)
+    // console.log(updtAccts)
     setTimeout(() => {
       setShowPro("message")
     }, 2500)

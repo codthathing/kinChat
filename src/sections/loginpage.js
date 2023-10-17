@@ -16,6 +16,11 @@ const LoginComp = () => {
     setShowNav(false)
   }
 
+  const NavToLoginMain = () => {
+    setNavigate("LOGINMAIN");
+    setShowNav(false)
+  }
+ 
   return (
     <section className="sections signSections" id="logSec">
       <main className="mainDiv">
@@ -33,7 +38,7 @@ const LoginComp = () => {
             <div className="signDiv">
               <button className="logBtn">
                 <i className="signIcon">E</i>
-                <span className="logSpan">Login in with Email</span>
+                <span onClick={NavToLoginMain} className="logSpan">Login in with Email</span>
               </button>
             </div>
           </section> 

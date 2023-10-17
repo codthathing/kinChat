@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import NavComp from "./nav/nav";
 import MessComp from "./message/message";
-import LoginComp from "./login";
+import LoginComp from "./loginpage";
+import LoginMain from "./signup/login";
 import SignComp from "./signup/signup";
 import Email from "./email";
 import { NavigateContext } from "./navigateContext";
@@ -14,6 +15,8 @@ const Home = () => {
   const NavFunc = () => {
     if(navigate == "LOGIN") {
       return ( <LoginComp/> );
+    } if(navigate == "LOGINMAIN") {
+      return ( <LoginMain/> );
     } if (navigate == "SIGNUP") {
       return ( <SignComp/> );
     } if (navigate == "EMAIL") {

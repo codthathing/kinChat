@@ -4,7 +4,7 @@ import { NavigateContext } from "../navigateContext";
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, showNav, setShowNav, setShowPro } = useContext(NavigateContext)
+  const { navigate, setNavigate, showNav, setShowNav, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
 
   const showMenu = () => {
     if(showNav) {
@@ -24,6 +24,20 @@ const NavComp = () => {
     setShowNav(false)
   }
 
+  const OpenSearch = () => {
+    setShowSearch(true)
+    setShowMessDiv(false)
+    setShowNav(false)
+    setShowInvite(false)
+  }
+
+  const OpenInvite = () => {
+    setShowSearch(false)
+    setShowMessDiv(false)
+    setShowNav(false)
+    setShowInvite(true)
+  }
+
   const NavShowed = () => {
     if(navigate == "LOGIN") {
       return ( <p>Language</p> );
@@ -31,11 +45,14 @@ const NavComp = () => {
       return ( <p>Language</p> );
     } if (navigate == "EMAIL") {
       return ( <p>Language</p> );
+    } if(navigate == "LOGINMAIN") {
+      return ( <p>Language</p> ); 
     } if(navigate == "MESSAGE") {
       return (
         <>
-          <p onClick={NavToPro}>Update Profile</p>
-          <p>Invite A Friend</p>
+          <p onClick={NavToPro}>Update profile</p>
+          <p onClick={OpenInvite}>Invite a friend</p>
+          <p onClick={OpenSearch}>Add a friend</p>
           <p>Language</p>
           <p onClick={NavToLogin}>Log out</p>
         </>

@@ -69,7 +69,6 @@ body {
 }
 
 #bacToLogSpan {
-  
   font-weight: 700;
 }
 
@@ -162,9 +161,9 @@ body {
   padding: 1rem 2.5rem;
 }
 
-#mesSec {
-  padding: 0.5rem;
-}
+/* #mesSec {
+  padding: 0.5rem 0;
+} */
 
 #updDiv {
   margin-top: 10vh;
@@ -216,6 +215,22 @@ body {
   color: red;
 }
 
+#proSec {
+  border-bottom: 1px solid black;
+}
+
+#mesProDiv {
+  margin-bottom: 0;
+}
+
+.messDivSec {
+  padding: 0.5rem;
+}
+
+.mesPerHead {
+  margin-bottom: 0.15rem;
+}
+
 .mesPerDiv {
   background-color: white;
   box-shadow: 1px 1px 2px gray;
@@ -224,7 +239,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .mesImgUserDiv {
@@ -243,7 +258,111 @@ body {
   color: red;
 }
 
+#mesSrhSec {
+  border-bottom: 1px solid black;
+}
 
+#mesSrhDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+#mesDivInt {
+  width: 100%;
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  color: black;
+}
+
+#mesIntDiv {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 1rem;
+}
+
+.mesDivIcn {
+  font-size: 1rem;
+}
+
+#mesDivSrhIcn {
+  color: red;
+}
+
+#mesIvtSec {
+  padding: 1rem;
+  text-align: center;
+}
+
+#ivtHead {
+  font-size: 1rem;
+}
+
+#ivtDiv {
+  margin: 1.5rem 0 2.5rem 0;
+}
+
+#ivtDivPar {
+  text-align: start;
+}
+
+.ivtInpt {
+  border: none;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  margin: 0.25rem 0;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+#ivtDivSpn {
+  color: red;
+  font-weight: 700;
+  text-decoration: underline;
+  text-align: start;
+}
+
+#ivtBtn {
+  border: none;
+  background-color: red;
+  color: black;
+  padding: 1rem 2.5rem;
+}
+
+#ivtVerDiv {
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+#ivtVerMain {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: fit-content;
+  width: 80%;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+#ivtVerBtn {
+  border: none;
+  background-color: red;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+}
 
 
 @media all and (max-width: 767px) {
@@ -315,7 +434,7 @@ body {
   .signBtns {
     margin-top: 1rem;
     border-radius: 0.5rem;
-    padding: 0.9rem 0;
+    padding: 1rem 0;
     font-size: 1rem;
   }
 
