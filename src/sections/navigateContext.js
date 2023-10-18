@@ -17,7 +17,9 @@ export const OptNavProvider = ({children}) => {
     localStorage.setItem("currentPage", JSON.stringify(navigate));
   }, [navigate])
   const  [ accCreated, setAccCreated ] = useState(accFromLocal)
-  localStorage.setItem("accounts", JSON.stringify(accCreated))
+  useEffect(() => {
+    localStorage.setItem("accounts", JSON.stringify(accCreated))
+  }, [accCreated])
   const [perProfile, setPerProfile] = useState(perAccFromLocal)
   useEffect(() => {
     localStorage.setItem("perAccount", JSON.stringify(perProfile));

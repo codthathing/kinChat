@@ -15,9 +15,8 @@ const UploadDiv = () => {
     setPerProfile(newProfile)
     let latUpdtAccts = Object.assign([], accCreated)
     latUpdtAccts = accCreated.concat()
-    // let updtAccts = latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => acct.profile = image)
-    // setAccCreated(updtAccts)
-    // console.log(updtAccts)
+    latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => acct.profile = image)
+    setAccCreated(latUpdtAccts)
     setTimeout(() => {
       setShowPro("message")
     }, 2500)

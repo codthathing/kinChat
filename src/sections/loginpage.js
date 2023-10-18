@@ -4,16 +4,22 @@ import { NavigateContext } from "./navigateContext";
 
 
 const LoginComp = () => {
-  const { setNavigate, setShowNav } = useContext(NavigateContext);
+  const {perProfile, setNavigate, setShowNav } = useContext(NavigateContext);
 
   const NavToSignUp = () => {
-    setNavigate("SIGNUP");
-    setShowNav(false)
+    if(perProfile) {
+      setShowNav(false)
+      setNavigate("SIGNUP");
+    }
   }
 
   const NavToMessage = () => {
-    setNavigate("MESSAGE");
-    setShowNav(false)
+    if(perProfile == null || Object.keys(perProfile).length === 0) {
+      setShowNav(false);
+    } else {
+      setShowNav(false);
+      setNavigate("MESSAGE");
+    }
   }
 
   const NavToLoginMain = () => {
@@ -43,7 +49,7 @@ const LoginComp = () => {
             </div>
           </section> 
         </div>
-        <p id="logText">No account yet? <span onClick={NavToSignUp} id="logLink">Sign Up</span></p>
+        <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText" id="logLink">Sign Up</span></p>
       </main>
     </section>
   );

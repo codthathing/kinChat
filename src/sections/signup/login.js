@@ -33,23 +33,19 @@ const LoginMain = () => {
         if(Array.isArray(accCreated) && accCreated.length === 0) {
           setFeedDetails({...feedDetails, email:"No account with email", password:""})
         } else {
-          accCreated.map((details) => {
-            if(accDetails.email !== details.email && accDetails.password == details.password) {
+          for(let i = 0; i < accCreated.length; i++) {
+            if(accDetails.email !== accCreated[i].email && accDetails.password == accCreated[i].password) {
               setFeedDetails({...feedDetails, email:"Email incorrect", password:""})
-            } if(accDetails.email == details.email && accDetails.password !== details.password) {
+            } if(accDetails.email == accCreated[i].email && accDetails.password !== accCreated[i].password) {
               setFeedDetails({...feedDetails, email:"", password:"Password incorrect"})
-            } if(accDetails.email !== details.email && accDetails.password !== details.password) {
+            } if(accDetails.email !== accCreated[i].email && accDetails.password !== accCreated[i].password) {
               setFeedDetails({...feedDetails, email:"Email incorrect", password:"Password incorrect"})
-            } if(accDetails.email == details.email && accDetails.password == details.password) {   
-              for(let i = 0; i < accCreated.length; i++) {
-                if(accCreated[i].email == accDetails.email && accCreated[i].password == accDetails.password) {
-                  setPerProfile(accCreated[i])
-                }
-              }
+            } if(accCreated[i].email == accDetails.email && accCreated[i].password == accDetails.password) {
+              setPerProfile(accCreated[i])
               setNavigate("MESSAGE")
               setFeedDetails({...feedDetails, email:"", password:""})
             }
-          })
+          }
         }
       }
     }
@@ -66,6 +62,7 @@ const LoginMain = () => {
         <h1 className="signHead">Login to account</h1>
         <form onSubmit={LoginToAcc}>
           <section className="signSec">
+            <p className="signText">{feedDetails.email}</p>
             <div className="signDiv">
               <i className="signIcon">E</i>
               <input type="text" 
@@ -77,9 +74,9 @@ const LoginMain = () => {
                 placeholder="email@gmail.com" 
                 className="signInput"/>
             </div>
-            <p className="signText">{feedDetails.email}</p>
           </section>
           <section className="signSec">
+            <p className="signText">{feedDetails.password}</p>
             <div className="signDiv">
               <i className="signIcon">C</i>
               <input 
@@ -92,8 +89,8 @@ const LoginMain = () => {
                 placeholder="Password" 
                 className="signInput"/>
             </div>
-            <p className="signText">{feedDetails.password}</p>
           </section>
+          <p className="linkText">Forgotten password?</p>
 
           <button type="submit" className="signBtns" id="logBtn">
             Login

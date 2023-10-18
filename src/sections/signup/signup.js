@@ -51,6 +51,39 @@ const SignComp = () => {
           setNavigate("EMAIL");
           setShowNav(false);
         } else {
+          for(let i = 0; i < accCreated.length; i++) {
+            if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
+            } if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+            }
+            
+            if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
+            } if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
+            }
+            
+            if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
+            } if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
+            } if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass) {
+              setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
+            } 
+            
+            if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass) {
+              setPerProfile(perAcc)
+              setNavigate("EMAIL");
+              setShowNav(false);
+    
+              accCreated.push(perAcc);
+              localStorage.setItem('accounts', JSON.stringify(accCreated));
+              setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
+              setAccDetails({email:'', password:'', conPass:'', username:''});
+            };
+          }
+
           accCreated.map((account) => {
             if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
               setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
@@ -98,6 +131,7 @@ const SignComp = () => {
         <h1 className="signHead">Create an account!</h1>
           <form onSubmit={createAcc}>
             <section className="signSec">
+              <p className="signText">{feedDetails.email}</p>
               <div className="signDiv">
                 <i className="signIcon">E</i>
                 <input type="text" 
@@ -109,7 +143,6 @@ const SignComp = () => {
                   placeholder="email@gmail.com" 
                   className="signInput"/>
               </div>
-              <p className="signText">{feedDetails.email}</p>
             </section>
             <section className="signSec">
               <div className="signDiv">
@@ -118,6 +151,7 @@ const SignComp = () => {
                   type="password" 
                   key={2}
                   name="password" 
+                  title="Password must be 8 words minimum"
                   value={accDetails.password}
                   onChange={handleDetails}
                   id="" 
@@ -126,6 +160,7 @@ const SignComp = () => {
               </div>
             </section>
             <section className="signSec">
+              <p className="signText">{feedDetails.conPass}</p>
               <div className="signDiv">
                 <i className="signIcon">C</i>
                 <input 
@@ -138,9 +173,9 @@ const SignComp = () => {
                   placeholder="Confirm Password" 
                   className="signInput"/>
               </div>
-              <p className="signText">{feedDetails.conPass}</p>
             </section>
             <section className="signSec">
+              <p className="signText">{feedDetails.username}</p>
               <div className="signDiv">
                 <i className="signIcon">U</i>
                 <input 
@@ -153,8 +188,8 @@ const SignComp = () => {
                   placeholder="Username"
                    className="signInput"/>
               </div>
-              <p className="signText">{feedDetails.username}</p>
             </section>
+            <h1 id="passWarn">Password entered not upto 8 words</h1>
         
             <button type="submit" className="signBtns" id="sigBtn">
               Create account

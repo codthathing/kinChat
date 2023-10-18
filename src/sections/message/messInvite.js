@@ -69,7 +69,7 @@ const MessInvite = () => {
             value={inptValue}
             onChange={(e) => setInptValue(e.target.value)}
             placeholder={fillText.placeholder}/>
-          <p onClick={NavEntInpt} id="ivtDivSpn">{entText}</p>
+          <p onClick={NavEntInpt} className="linkText" id="ivtDivSpn">{entText}</p>
         </div>
         <button onClick={SendLink} id="ivtBtn">Send invite</button>
       </section>
