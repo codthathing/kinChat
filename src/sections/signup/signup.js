@@ -4,7 +4,7 @@ import { NavigateContext } from "../navigateContext";
 
 const SignComp = () => {
 
-  const {setNavigate, setShowNav, accCreated, setPerProfile } = useContext(NavigateContext)
+  const {setNavigate, setShowNav, accCreated, setAccCreated,setPerProfile } = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setNavigate("LOGIN");
@@ -27,7 +27,8 @@ const SignComp = () => {
   const [feedDetails, setFeedDetails] = useState({
     email:'',
     conPass:'',
-    username:''
+    username:'',
+    passWarn:''
   });
 
   const createAcc = (e) => {
@@ -41,81 +42,73 @@ const SignComp = () => {
         username: accDetails.username,
         profile: unknown
       };
-      if(accCreated) {
-        if(Array.isArray(accCreated) && accCreated.length === 0) {
+      if(Array.isArray(accCreated) && accCreated.length === 0) {
+        if(perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching', passWarn:'Password entered not upto 8 words'});
+        } if(perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'', passWarn:'Password entered not upto 8 words'});
+        } if(perAcc.password !== perAcc.conPass && [...perAcc.password].length >= 8) {
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching', passWarn:''});
+        } if(perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
           accCreated.push(perAcc)
           localStorage.setItem('accounts', JSON.stringify(accCreated));
           setPerProfile(perAcc)
-          setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
+          setFeedDetails({...feedDetails, email:'', username:'', conPass:'', passWarn:''});
           setAccDetails({email:'', password:'', conPass:'', username:''});
           setNavigate("EMAIL");
           setShowNav(false);
-        } else {
-          for(let i = 0; i < accCreated.length; i++) {
-            if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
-            } if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-            }
-            
-            if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
-            } if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-            }
-            
-            if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
-            } if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
-            } if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass) {
-              setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
-            } 
-            
-            if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass) {
-              setPerProfile(perAcc)
-              setNavigate("EMAIL");
-              setShowNav(false);
-    
-              accCreated.push(perAcc);
-              localStorage.setItem('accounts', JSON.stringify(accCreated));
-              setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
-              setAccDetails({email:'', password:'', conPass:'', username:''});
-            };
-          }
+        }
+      } else {
+        for(let i = 0; i < accCreated.length; i++) {
+          if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
+            setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'', passWarn:''});
+            break;
+          } if(perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'', passWarn:'Password entered not upto 8 words'});
+            break;
+          } 
 
-          accCreated.map((account) => {
-            if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password == accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:''});
-            } if(perAcc.email == account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-            }
+          if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
+            setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:'', passWarn:''});
+            break;
+          } if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:'', passWarn:'Password entered not upto 8 words'});
+            break;
+          } 
+
+          if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length >= 8) {
+            setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching', passWarn:''});
+            break;
+          } if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching', passWarn:'Password entered not upto 8 words'});
+            break;
+          } 
+
+          if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'', username:'', conPass:'', passWarn:'Password entered not upto 8 words'});
+            break;
+          } if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'Email already used', username:'Username alreay used', conPass:'', passWarn:'Password entered not upto 8 words'});
+            break;
+          } if(perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:'Password not matching', passWarn:'Password entered not upto 8 words'});
+            break;
+          } if(perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
+            setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching', passWarn:'Password entered not upto 8 words'});
+            break;
+          }
             
-            if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'', username:'Username already used', conPass:''});
-            } if(perAcc.email !== account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'', conPass:'Password not matching'});
-            }
-            
-            if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password !== accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:'Password not matching'});
-            } if(perAcc.email == account.email && perAcc.username == account.username && accDetails.password == accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'Email already used', username:'Username already used', conPass:''});
-            } if(perAcc.email !== account.email && perAcc.username !== account.username && accDetails.password !== accDetails.conPass) {
-              setFeedDetails({...feedDetails, email:'', username:'', conPass:'Password not matching'});
-            } 
-            
-            if(perAcc.email !== account.email && perAcc.username !== account.username && perAcc.password == perAcc.conPass) {
-              setPerProfile(perAcc)
-              setNavigate("EMAIL");
-              setShowNav(false);
+          if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
+            setPerProfile(perAcc)
+            setNavigate("EMAIL");
+            setShowNav(false);
     
-              accCreated.push(perAcc);
-              localStorage.setItem('accounts', JSON.stringify(accCreated));
-              setFeedDetails({...feedDetails, email:'', username:'', conPass:''});
-              setAccDetails({email:'', password:'', conPass:'', username:''});
-            };
-          })
+            accCreated.push(perAcc);
+            localStorage.setItem('accounts', JSON.stringify(accCreated));
+            setFeedDetails({...feedDetails, email:'', username:'', conPass:'', passWarn:''});
+            setAccDetails({email:'', password:'', conPass:'', username:''});
+            break;
+          };
         }
       }
     }
@@ -145,6 +138,7 @@ const SignComp = () => {
               </div>
             </section>
             <section className="signSec">
+              <p className="signText">{feedDetails.passWarn}</p>
               <div className="signDiv">
                 <i className="signIcon">T</i>
                 <input 
@@ -189,7 +183,6 @@ const SignComp = () => {
                    className="signInput"/>
               </div>
             </section>
-            <h1 id="passWarn">Password entered not upto 8 words</h1>
         
             <button type="submit" className="signBtns" id="sigBtn">
               Create account

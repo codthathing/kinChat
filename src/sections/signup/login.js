@@ -21,33 +21,35 @@ const LoginMain = () => {
     setAccDetails({...accDetails, [name]:value});
   }
 
-  const [feedDetails, setFeedDetails] = useState({
-    email:'',
-    password:'',
-  });
+  const [feedDetails, setFeedDetails] = useState("");
 
   const LoginToAcc = (e) => {
     e.preventDefault();
     if(accDetails.email && accDetails.password) {
-      if(accCreated) {
-        if(Array.isArray(accCreated) && accCreated.length === 0) {
-          setFeedDetails({...feedDetails, email:"No account with email", password:""})
-        } else {
+      // if(accCreated) {
+        // if(Array.isArray(accCreated) && accCreated.length === 0) {
+        //   setFeedDetails("No account with email")
+        // } else {
           for(let i = 0; i < accCreated.length; i++) {
-            if(accDetails.email !== accCreated[i].email && accDetails.password == accCreated[i].password) {
-              setFeedDetails({...feedDetails, email:"Email incorrect", password:""})
-            } if(accDetails.email == accCreated[i].email && accDetails.password !== accCreated[i].password) {
-              setFeedDetails({...feedDetails, email:"", password:"Password incorrect"})
-            } if(accDetails.email !== accCreated[i].email && accDetails.password !== accCreated[i].password) {
-              setFeedDetails({...feedDetails, email:"Email incorrect", password:"Password incorrect"})
-            } if(accCreated[i].email == accDetails.email && accCreated[i].password == accDetails.password) {
-              setPerProfile(accCreated[i])
-              setNavigate("MESSAGE")
-              setFeedDetails({...feedDetails, email:"", password:""})
+            if(accDetails.email !== accCreated[i].email && accDetails.password === accCreated[i].password) {
+              setFeedDetails("Email or password wrong");
+              break;
+            } else if(accDetails.email !== accCreated[i].email && accDetails.password !== accCreated[i].password) {
+              setFeedDetails("No account with email");
+              break;
+            } else if(accDetails.email === accCreated[i].email && accDetails.password !== accCreated[i].password) {
+              setFeedDetails("Email or password wrong");
+              break;
+            } else if(accDetails.email === accCreated[i].email && accDetails.password === accCreated[i].password) {
+              setPerProfile(accCreated[i]);
+              setNavigate("MESSAGE");
+              console.log(accCreated[i])
+              setFeedDetails("");
+              break;
             }
           }
-        }
-      }
+        // }
+      // }
     }
   }
 
@@ -62,7 +64,6 @@ const LoginMain = () => {
         <h1 className="signHead">Login to account</h1>
         <form onSubmit={LoginToAcc}>
           <section className="signSec">
-            <p className="signText">{feedDetails.email}</p>
             <div className="signDiv">
               <i className="signIcon">E</i>
               <input type="text" 
@@ -74,9 +75,9 @@ const LoginMain = () => {
                 placeholder="email@gmail.com" 
                 className="signInput"/>
             </div>
+            <p className="signText">{feedDetails}</p>
           </section>
           <section className="signSec">
-            <p className="signText">{feedDetails.password}</p>
             <div className="signDiv">
               <i className="signIcon">C</i>
               <input 

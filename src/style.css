@@ -136,12 +136,6 @@ body {
   width: 100%;
 }
 
-#passWarn {
-  color: red;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
 #mainVer {
   padding: 1rem;
   text-align: center;
