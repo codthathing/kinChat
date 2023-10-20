@@ -81,6 +81,9 @@ body {
   display: flex;
   width: 100%;
   justify-content: center;
+  background-color: white;
+  border-radius: 0.5rem;
+  align-items: center;
 }
 
 .signIcon{
@@ -93,6 +96,12 @@ body {
   border: hidden;
   outline: none;
   width: 100%;
+}
+
+.showPass {
+  padding: 0 1rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .signText {
@@ -294,6 +303,7 @@ body {
 #mesIvtSec {
   padding: 1rem;
   text-align: center;
+  margin-top: 1.5rem;
 }
 
 #ivtHead {

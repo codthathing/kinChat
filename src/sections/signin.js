@@ -23,7 +23,7 @@ const LoginComp = () => {
   }
 
   const NavToLoginMain = () => {
-    setNavigate("LOGINMAIN");
+    setNavigate("LOGINALL");
     setShowNav(false)
   }
  

@@ -3,17 +3,35 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginMain = () => {
 
-  const {setNavigate, setShowNav, accCreated, setPerProfile} = useContext(NavigateContext)
+  const {setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setNavigate("LOGIN")
     setShowNav(false)
   }
 
+  const NavToLoginPass = () => {
+    setShowLogin(false)
+    setShowLoginPass(true)
+  }
+
   const [accDetails, setAccDetails] = useState(
     { email:'', 
       password:''
   })
+
+  const [showPass, setShowPass] = useState({
+    detType:false,
+    class:"fa-solid fa-eye showPass"
+  })
+
+  const TogPass = () => {
+    if(showPass.detType) {
+      setShowPass({...showPass, detType:false, class:"fa-solid fa-eye showPass"})
+    } else if(!showPass.detType) {
+      setShowPass({...showPass, detType:true, class:"fa-solid fa-eye-slash showPass"})
+    }
+  }
 
   const handleDetails = (e) => {
     const name = e.target.name;
@@ -26,37 +44,32 @@ const LoginMain = () => {
   const LoginToAcc = (e) => {
     e.preventDefault();
     if(accDetails.email && accDetails.password) {
-      // if(accCreated) {
-        // if(Array.isArray(accCreated) && accCreated.length === 0) {
-        //   setFeedDetails("No account with email")
-        // } else {
-          for(let i = 0; i < accCreated.length; i++) {
-            if(accDetails.email !== accCreated[i].email && accDetails.password === accCreated[i].password) {
-              setFeedDetails("Email or password wrong");
-              break;
-            } else if(accDetails.email !== accCreated[i].email && accDetails.password !== accCreated[i].password) {
-              setFeedDetails("No account with email");
-              break;
-            } else if(accDetails.email === accCreated[i].email && accDetails.password !== accCreated[i].password) {
-              setFeedDetails("Email or password wrong");
-              break;
-            } else if(accDetails.email === accCreated[i].email && accDetails.password === accCreated[i].password) {
-              setPerProfile(accCreated[i]);
-              setNavigate("MESSAGE");
-              console.log(accCreated[i])
-              setFeedDetails("");
-              break;
+      if(accCreated) {
+        if(Array.isArray(accCreated) && accCreated.length === 0) {
+          setFeedDetails("No account with email")
+        } else {
+          accCreated.find((acct) => {
+            if(accDetails.email === acct.email && accDetails.password === acct.password) {
+              for(let i = 0; i < accCreated.length; i++) {
+                if(accDetails.email === accCreated[i].email && accDetails.password === accCreated[i].password) {
+                  setPerProfile(accCreated[i]);
+                  setNavigate("MESSAGE");
+                  setFeedDetails("");
+                }
+              }
+            } else {
+              setFeedDetails("Check email and password");
             }
-          }
-        // }
-      // }
+          })
+        }
+      }
     }
   }
 
   return (
     <section className="sections signSections" id="sigSec">
       <div onClick={NavToLogin} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog">x</i>
+        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
         <span id="bacToLogSpan">Back</span>
       </div>
 
@@ -65,23 +78,23 @@ const LoginMain = () => {
         <form onSubmit={LoginToAcc}>
           <section className="signSec">
             <div className="signDiv">
-              <i className="signIcon">E</i>
+              <i className="fa-solid fa-envelope signIcon"></i>
               <input type="text" 
                 key={1}
                 name="email"
                 value={accDetails.email} 
                 onChange={handleDetails}
                 id="" 
-                placeholder="email@gmail.com" 
+                placeholder="Email address" 
                 className="signInput"/>
             </div>
             <p className="signText">{feedDetails}</p>
           </section>
           <section className="signSec">
             <div className="signDiv">
-              <i className="signIcon">C</i>
+              <i className="fa-solid fa-unlock signIcon"></i>
               <input 
-                type="password" 
+                type={showPass.detType ? "text" : "password"} 
                 key={3}
                 name="password" 
                 value={accDetails.password}
@@ -89,9 +102,10 @@ const LoginMain = () => {
                 id="" 
                 placeholder="Password" 
                 className="signInput"/>
+              <i className={showPass.class} onClick={TogPass}></i>
             </div>
           </section>
-          <p className="linkText">Forgotten password?</p>
+          <p className="linkText" onClick={NavToLoginPass}>Forgotten password?</p>
 
           <button type="submit" className="signBtns" id="logBtn">
             Login

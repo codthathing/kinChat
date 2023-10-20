@@ -65,7 +65,7 @@ const NavComp = () => {
       <nav id="navHead">
         <h1 id="logo">kinChat</h1>
         <aside id="navMenu">
-          <i id="navIcon" onClick={showMenu} className="fa-solid fa-ellipsis-vertical">i</i>
+          <i id="navIcon" onClick={showMenu} className="fa-solid fa-ellipsis-vertical"></i>
           {showNav && 
             <div id="navMenuDiv">
               <NavShowed/>

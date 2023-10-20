@@ -18,7 +18,7 @@ const MesSearch = () => {
     <div>
       <section className="messDivSec" id="mesSrhSec">
         <div id="mesSrhDiv">
-          <i className="mesDivIcn" onClick={CloseSearch} id="mesDivBckIcn">B</i>
+          <i className="fa-solid fa-chevron-left mesDivIcn" onClick={CloseSearch} id="mesDivBckIcn"></i>
           <div id="mesIntDiv">
             <input 
               type="text" 
@@ -27,7 +27,7 @@ const MesSearch = () => {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search"/>
           </div>
-          <i className="mesDivIcn" id="mesDivSrhIcn">S</i>
+          <i className="fa-solid fa-magnifying-glass mesDivIcn" id="mesDivSrhIcn"></i>
         </div>
       </section>
 

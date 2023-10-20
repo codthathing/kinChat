@@ -54,7 +54,7 @@ const MessInvite = () => {
     <div>
 
       <div onClick={CloseInvite} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog">x</i>
+        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
         <span id="bacToLogSpan">Back</span>
       </div>
 
