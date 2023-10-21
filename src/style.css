@@ -338,7 +338,7 @@ body {
   padding: 1rem 2.5rem;
 }
 
-#ivtVerDiv {
+.ivtVerDiv {
   background-color: rgba(0, 0, 0, 0.15);
   height: 100vh;
   width: 100%;
@@ -346,7 +346,7 @@ body {
   top: 0;
 }
 
-#ivtVerMain {
+.ivtVerMain {
   background-color: white;
   position: absolute;
   left: 0;
@@ -360,7 +360,7 @@ body {
   text-align: center;
 }
 
-#ivtVerBtn {
+.ivtVerBtn {
   border: none;
   background-color: red;
   color: black;

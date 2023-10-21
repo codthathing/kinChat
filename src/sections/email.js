@@ -17,7 +17,7 @@ const Email = () => {
         Hi,<br/> Verification E-mail sent to <b>{perProfile.email}</b>. Click on the button below to verify your 
         E-mail Address
       </p>
-      <button onClick={NavToLogin} id="verBtn">Resend E-mail</button>
+      <button onClick={NavToLogin} id="verBtn">Login</button>
     </main>
   ); 
 }

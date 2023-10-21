@@ -76,10 +76,10 @@ const MessInvite = () => {
 
 
       {showEmail &&
-        <div id="ivtVerDiv">
-          <main id="ivtVerMain">
-            <p id="ivtVerPar">Invitation link sent to <b>{emailTo}</b></p>
-            <button onClick={() => setShowEmail(false)} id="ivtVerBtn">Ok</button>
+        <div className="ivtVerDiv">
+          <main className="ivtVerMain">
+            <p className="ivtVerPar">Invitation link sent to <b>{emailTo}</b></p>
+            <button onClick={() => setShowEmail(false)} className="ivtVerBtn">Ok</button>
           </main> 
         </div>
       }

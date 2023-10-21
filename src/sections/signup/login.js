@@ -3,7 +3,7 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginMain = () => {
 
-  const {setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
+  const {setToPass, setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setNavigate("LOGIN")
@@ -11,8 +11,21 @@ const LoginMain = () => {
   }
 
   const NavToLoginPass = () => {
-    setShowLogin(false)
-    setShowLoginPass(true)
+    if(accDetails.email) {
+      if(Array.isArray(accCreated) && accCreated.length === 0) {
+        setFeedDetails("No account with email")
+      } else {
+        accCreated.find((acct) => {
+          if(accDetails.email !== acct.email) {
+            setFeedDetails("No account with email")
+          } else if(accDetails.email === acct.email)  {
+            setShowLogin(false)
+            setShowLoginPass(true)
+            setToPass(accDetails.email)
+          }
+        })
+      }
+    }
   }
 
   const [accDetails, setAccDetails] = useState(
@@ -66,7 +79,7 @@ const LoginMain = () => {
     }
   }
 
-  return (
+  return ( 
     <section className="sections signSections" id="sigSec">
       <div onClick={NavToLogin} id="bacLogDiv">
         <i className="fa-solid fa-chevron-left" id="bacToLog"></i>

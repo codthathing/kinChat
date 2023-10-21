@@ -3,26 +3,25 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginPass = () => {
 
-  const {setShowLogin, setShowLoginPass} = useContext(NavigateContext)
+  const {toPass, accCreated, setAccCreated, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setShowLogin(true)
     setShowLoginPass(false)
   }
-
-  const [accDetails, setAccDetails] = useState(
-    { email:'', 
-      password:'',
+ 
+  const [passDetails, setPassDetails] = useState(
+    { password:'',
       conPass:''
   })
 
   const handleDetails = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setAccDetails({...accDetails, [name]:value});
+    setPassDetails({...passDetails, [name]:value});
   }
 
-  const [feedDetails, setFeedDetails] = useState("");
+  const [feedDetails, setFeedDetails] = useState({password:'', passCon:''});
 
   const [showPass, setShowPass] = useState({
     detType:false,
@@ -37,8 +36,37 @@ const LoginPass = () => {
     }
   }
 
-  const ChangePass = () => {
+  const [showPassChg, setShowPassChg] = useState(false)
+  const BckToLogin = () => {
+    setShowPassChg(false)
+    setShowLogin(true)
+    setShowLoginPass(false)
+  }
 
+  const ChangePass = (e) => {
+    e.preventDefault();
+    if(passDetails.password && passDetails.conPass) {
+      if(passDetails.password !== passDetails.conPass && [...passDetails.password].length < 8) {
+        setFeedDetails({...feedDetails, conPass:'Password not matching', password:'Password entered not upto 8 words'})
+      } if(passDetails.password == passDetails.conPass && [...passDetails.password].length < 8) {
+        setFeedDetails({...feedDetails, conPass:'', password:'Password entered not upto 8 words'})
+      } if(passDetails.password !== passDetails.conPass && [...passDetails.password].length >= 8) {
+        setFeedDetails({...feedDetails, conPass:'Password not matching', password:''})
+      } if(passDetails.password == passDetails.conPass && [...passDetails.password].length >= 8) {
+        let chgPassAct = Object.assign([], accCreated)
+        chgPassAct = accCreated.concat()
+        chgPassAct.filter((acct) => acct.email === toPass).map((acct) => {
+          acct.password = passDetails.password;
+          acct.conPass = passDetails.password;
+        })
+        setPassDetails({...passDetails, password:'', conPass:''})
+        setTimeout(() => {
+          setAccCreated(chgPassAct)
+          setShowPassChg(true)
+        }, 2500)
+        setFeedDetails({...feedDetails, conPass:'', password:''})
+      }
+    }
   }
 
   return (
@@ -57,7 +85,7 @@ const LoginPass = () => {
               <input type="text" 
                 key={1}
                 name="email"
-                value={accDetails.email}
+                value={toPass}
                 id="" 
                 placeholder="Email address" 
                 className="signInput"
@@ -71,35 +99,45 @@ const LoginPass = () => {
                 type={showPass.detType ? "text" : "password"} 
                 key={3}
                 name="password" 
-                value={accDetails.password}
+                value={passDetails.password}
                 onChange={handleDetails}
                 id="" 
                 placeholder="New password" 
                 className="signInput"/>
               <i className={showPass.class} onClick={TogPass}></i>
             </div>
+            <p className="signText">{feedDetails.password}</p>
           </section>
           <section className="signSec">
-              <div className="signDiv">
-                <i className="fa-solid fa-lock signIcon"></i>
-                <input 
-                  type={showPass.detType ? "text" : "password"}
-                  key={3}
-                  name="conPass" 
-                  value={accDetails.conPass}
-                  onChange={handleDetails}
-                  id="" 
-                  placeholder="Confirm Password" 
-                  className="signInput"/>
-              </div>
-              <p className="signText">{feedDetails}</p>
-            </section>
+            <div className="signDiv">
+              <i className="fa-solid fa-lock signIcon"></i>
+              <input 
+                type={showPass.detType ? "text" : "password"}
+                key={3}
+                name="conPass" 
+                value={passDetails.conPass}
+                onChange={handleDetails}
+                id="" 
+                placeholder="Confirm Password" 
+                className="signInput"/>
+            </div>
+            <p className="signText">{feedDetails.conPass}</p>
+          </section>
 
           <button type="submit" className="signBtns" id="logBtn">
             Change password
           </button>
         </form>
       </main>
+
+      {showPassChg &&
+        <div className="ivtVerDiv">
+          <main className="ivtVerMain">
+            <p className="ivtVerPar">Password change to account <b>{toPass}</b> successfull!</p>
+            <button onClick={BckToLogin} className="ivtVerBtn">Ok</button>
+          </main> 
+        </div>
+      }
     </section>
   );
 }

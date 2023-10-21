@@ -9,8 +9,9 @@ let proMessFromLocal = JSON.parse(localStorage.getItem("proMess")) || "profile";
 
 export const OptNavProvider = ({children}) => {
   const [showNav, setShowNav] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-  const [showLoginPass, setShowLoginPass] = useState(true)
+  const [showLogin, setShowLogin] = useState(true)
+  const [showLoginPass, setShowLoginPass] = useState(false)
+  const [toPass, setToPass] = useState("")
   const [showSearch, setShowSearch] = useState(false)
   const [showMessDiv, setShowMessDiv] = useState(true)
   const [showInvite, setShowInvite] = useState(false)
@@ -36,7 +37,7 @@ export const OptNavProvider = ({children}) => {
       navigate, setNavigate, accCreated, setAccCreated, perProfile, setPerProfile,
       showPro, setShowPro, showSearch, setShowSearch, showMessDiv, 
       setShowMessDiv, showInvite, setShowInvite, showLogin, 
-      setShowLogin, showLoginPass, setShowLoginPass
+      setShowLogin, showLoginPass, setShowLoginPass, toPass, setToPass
        }}>
       {children}
     </NavigateContext.Provider>
