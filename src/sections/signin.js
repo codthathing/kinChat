@@ -28,14 +28,14 @@ const LoginComp = () => {
   }
  
   return (
-    <section className="sections signSections" id="logSec">
+    <section className="sections">
       <main className="mainDiv">
         <h1 className="signHead">Continue with</h1>
         <div id="logDiv">
           <section className="signSec">
             <div className="signDiv">
               <button className="logBtn">
-                <i className="signIcon">G</i>
+                <i className="fa-brands fa-google signIcon"></i>
                 <span onClick={NavToMessage} className="logSpan">Login in with Google</span>
               </button>
             </div>
@@ -43,13 +43,13 @@ const LoginComp = () => {
           <section className="signSec">
             <div className="signDiv">
               <button className="logBtn">
-                <i className="signIcon">E</i>
+                <i className="fa-solid fa-envelope signIcon"></i>
                 <span onClick={NavToLoginMain} className="logSpan">Login in with Email</span>
               </button>
             </div>
           </section> 
         </div>
-        <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText" id="logLink">Sign Up</span></p>
+        <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText">Sign Up</span></p>
       </main>
     </section>
   );

@@ -56,19 +56,18 @@ body {
   margin: auto;
 }
 
-#bacLogDiv {
+.bacLogDiv {
   display: flex;
   align-items: center;
   cursor: pointer;
-  gap: 0.25rem;
   width: fit-content;
 }
 
-#bacToLog {
+.bacToLog {
   font-weight: 900;
 }
 
-#bacToLogSpan {
+.bacToLogSpan {
   font-weight: 700;
 }
 
@@ -99,13 +98,18 @@ body {
 }
 
 .showPass {
-  padding: 0 1rem;
-  font-size: 1rem;
   cursor: pointer;
 }
 
 .signText {
   color: red;
+}
+
+.linkText {
+  color: red;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .signBtns {
@@ -114,19 +118,6 @@ body {
   background-color: white;
   color: red;
   cursor: pointer;
-}
-
-.linkText {
-  color: red;
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-#sigLink {
-  color: red;
-  text-decoration: none;
 }
 
 .logBtn {
@@ -145,34 +136,29 @@ body {
   width: 100%;
 }
 
+#logText {
+  text-align: center;
+}
+
 #mainVer {
-  padding: 1rem;
   text-align: center;
 }
 
 #verHead {
-  font-size: 1rem;
-  margin: 1rem 0 2rem 0;
   color: red;
-}
-
-#verPara {
-  margin: 2.5rem 0 3.5rem 0;
 }
 
 #verBtn {
   border: none;
   background-color: red;
   color: black;
-  padding: 1rem 2.5rem;
 }
 
-/* #mesSec {
-  padding: 0.5rem 0;
-} */
+#updHead {
+  color: red;
+}
 
 #updDiv {
-  margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
@@ -182,28 +168,6 @@ body {
 
 #updProDiv {
   background-color: white;
-  padding: 2rem 2.5rem;
-}
-
-#updHead {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: red;
-}
-
-#updImg {
-  width: 9.5rem;
-  height: 10rem;
-}
-
-#updUser {
-  font-size: 1rem;
-  margin-top: 0.75rem;
-}
-
-#updPara {
-  font-size: 0.75rem;
-  margin: 0.75rem 0 1.5rem 0;
 }
 
 #updOptDiv {
@@ -213,7 +177,6 @@ body {
 }
 
 .updOptBtns {
-  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -221,43 +184,24 @@ body {
   color: red;
 }
 
-#proSec {
-  border-bottom: 1px solid black;
+.mesPerHead {
+  font-weight: 700;
 }
 
 #mesProDiv {
   margin-bottom: 0;
 }
 
-.messDivSec {
-  padding: 0.5rem;
-}
-
-.mesPerHead {
-  margin-bottom: 0.15rem;
-}
-
 .mesPerDiv {
   background-color: white;
-  box-shadow: 1px 1px 2px gray;
-  border-radius: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.25rem;
 }
 
 .mesImgUserDiv {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.mesImg {
-  height: 2.25rem;
-  width: 2rem;
-  border-radius: 0.5rem;
 }
 
 .mesActive {
@@ -272,28 +216,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 0.5rem;
 }
 
 #mesDivInt {
-  width: 100%;
-  padding: 1rem 1rem;
-  border-radius: 0.5rem;
   border: none;
   outline: none;
   color: black;
 }
 
 #mesIntDiv {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   width: 100%;
-  padding: 0 1rem;
-  margin: 0 1rem;
-}
-
-.mesDivIcn {
-  font-size: 1rem;
 }
 
 #mesDivSrhIcn {
@@ -369,13 +301,16 @@ body {
 }
 
 
+
+
+
 @media all and (max-width: 767px) {
   #navHead {
     padding: 1rem 1.5rem 1rem 1rem;
   }
 
   #logo {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   #navIcon {
@@ -397,16 +332,17 @@ body {
     width: 80%;
     margin-top: 10vh;
   }
-
-  #bacLogDiv {
+  
+  .bacLogDiv {
     margin: 1rem 0 0 1.5rem;
+    gap: 0.25rem;
   }
 
-  #bacToLog {
+  .bacToLog {
     font-size: 1rem;
   }
 
-  #bacToLogSpan {
+  .bacToLogSpan {
     font-size: 0.5rem;
   }
 
@@ -431,7 +367,16 @@ body {
     border-radius: 0 0.5rem 0.5rem 0;
   }
 
+  .showPass {
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+
   .signText {
+    font-size: 0.75rem;
+  }
+
+  .linkText {
     font-size: 0.75rem;
   }
 
@@ -439,7 +384,7 @@ body {
     margin-top: 1rem;
     border-radius: 0.5rem;
     padding: 1rem 0;
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 
   .logSpan {
@@ -449,7 +394,115 @@ body {
   }
   
   #logText {
-    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  #mainVer {
+    padding: 2rem;
+  }
+  
+  #verHead {
+    font-size: 1rem;
+  }
+  
+  #verPara {
+    margin: 2.5rem 0 3.5rem 0;
+    font-size: 0.75rem;
+  }
+  
+  #verBtn {
+    padding: 1rem 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  #updHead {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #updDiv {
+    margin-top: 10vh;
+  }
+
+  #updProDiv {
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  #updImg {
+    width: 7.5rem;
+    height: 9rem;
+  }
+  
+  #updUser {
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  
+  #updPara {
+    font-size: 0.75rem;
+    margin: 0.75rem 0 1.5rem 0;
+  }
+
+  .updOptBtns {
+    font-size: 0.75rem;
+  }
+
+  #proSec {
+    border-bottom: 1px solid black;
+  }
+  
+  .messDivSec {
+    padding: 0.5rem;
+  }
+  
+  .mesPerHead {
+    margin-bottom: 0.15rem;
+    font-size: 0.75rem;
+  }
+
+  .mesPerDiv {
+    box-shadow: 1px 1px 2px gray;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .mesImgUserDiv {
+    gap: 0.5rem;
+  }
+  
+  .mesImg {
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 0.5rem;
+  }
+
+  .mesUser {
+    font-size: 0.75rem;
+  }
+
+  .mesActive {
+    font-size: 0.75rem;
+  }
+
+  #mesSrhDiv {
+    padding: 0 0.5rem;
+  }
+  
+  #mesDivInt {
+    width: 100%;
+    padding: 1rem 0 1rem 1.25rem;
+    border-radius: 0.5rem;
+  }
+  
+  #mesIntDiv {
+    padding: 0 1rem;
+    margin: 0 1rem;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  
+  .mesDivIcn {
     font-size: 1rem;
   }
 }

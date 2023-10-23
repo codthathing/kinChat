@@ -53,9 +53,9 @@ const MessInvite = () => {
   return (
     <div>
 
-      <div onClick={CloseInvite} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
-        <span id="bacToLogSpan">Back</span>
+      <div onClick={CloseInvite} className="bacLogDiv">
+        <i className="fa-solid fa-chevron-left bacToLog"></i>
+        <span className="bacToLogSpan">Back</span>
       </div>
 
 

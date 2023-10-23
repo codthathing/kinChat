@@ -3,7 +3,7 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginPass = () => {
 
-  const {toPass, accCreated, setAccCreated, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
+  const {toPass, accCreated, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
     setShowLogin(true)
@@ -59,21 +59,21 @@ const LoginPass = () => {
           acct.password = passDetails.password;
           acct.conPass = passDetails.password;
         })
-        setPassDetails({...passDetails, password:'', conPass:''})
         setTimeout(() => {
-          setAccCreated(chgPassAct)
           setShowPassChg(true)
+          localStorage.setItem("accounts", JSON.stringify(chgPassAct))
         }, 2500)
+        setPassDetails({...passDetails, password:'', conPass:''})
         setFeedDetails({...feedDetails, conPass:'', password:''})
       }
     }
   }
 
   return (
-    <section className="sections signSections" id="sigSec">
-      <div onClick={NavToLogin} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
-        <span id="bacToLogSpan">Back</span>
+    <section className="sections">
+      <div onClick={NavToLogin} className="bacLogDiv">
+        <i className="fa-solid fa-chevron-left bacToLog"></i>
+        <span className="bacToLogSpan">Back</span>
       </div>
 
       <main className="mainDiv">
@@ -124,7 +124,7 @@ const LoginPass = () => {
             <p className="signText">{feedDetails.conPass}</p>
           </section>
 
-          <button type="submit" className="signBtns" id="logBtn">
+          <button type="submit" className="signBtns">
             Change password
           </button>
         </form>

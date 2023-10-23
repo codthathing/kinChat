@@ -127,10 +127,10 @@ const SignComp = () => {
   }
 
   return (
-    <section className="sections signSections" id="sigSec">
-      <div onClick={NavToLogin} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
-        <span id="bacToLogSpan">Back</span>
+    <section className="sections">
+      <div onClick={NavToLogin} className="bacLogDiv">
+        <i className="fa-solid fa-chevron-left bacToLog"></i>
+        <span className="bacToLogSpan">Back</span>
       </div>
       <main className="mainDiv">
         <h1 className="signHead">Create an account!</h1>
@@ -197,7 +197,7 @@ const SignComp = () => {
               <p className="signText">{feedDetails.username}</p>
             </section>
         
-            <button type="submit" className="signBtns" id="sigBtn">
+            <button type="submit" className="signBtns">
               Create account
             </button>
           </form>

@@ -80,10 +80,10 @@ const LoginMain = () => {
   }
 
   return ( 
-    <section className="sections signSections" id="sigSec">
-      <div onClick={NavToLogin} id="bacLogDiv">
-        <i className="fa-solid fa-chevron-left" id="bacToLog"></i>
-        <span id="bacToLogSpan">Back</span>
+    <section className="sections">
+      <div onClick={NavToLogin} class="bacLogDiv">
+        <i className="fa-solid fa-chevron-left bacToLog"></i>
+        <span className="bacToLogSpan">Back</span>
       </div>
 
       <main className="mainDiv">
@@ -120,7 +120,7 @@ const LoginMain = () => {
           </section>
           <p className="linkText" onClick={NavToLoginPass}>Forgotten password?</p>
 
-          <button type="submit" className="signBtns" id="logBtn">
+          <button type="submit" className="signBtns">
             Login
           </button>
         </form>
