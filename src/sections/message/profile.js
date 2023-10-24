@@ -3,7 +3,7 @@ import { NavigateContext } from "../navigateContext";
 
 const UploadDiv = () => {
 
-  const { accCreated, setAccCreated, perProfile, setPerProfile, setShowPro } = useContext(NavigateContext)
+  const { setShowNav, setShowPreLoad, accCreated, setAccCreated, perProfile, setPerProfile, setShowPro } = useContext(NavigateContext)
 
   const [image, setImage] = useState(perProfile.profile)
   const [ user ] = useState(perProfile.username)
@@ -12,20 +12,37 @@ const UploadDiv = () => {
   const changeProfile = () => {
     let newProfile = Object.assign({}, perProfile);
     newProfile.profile = image;
+    newProfile.logged = true;
     setPerProfile(newProfile)
     let latUpdtAccts = Object.assign([], accCreated)
     latUpdtAccts = accCreated.concat()
-    latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => acct.profile = image)
+    latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => {
+      acct.profile = image
+      acct.logged = true
+    })
     setAccCreated(latUpdtAccts)
+    setShowPreLoad(true);
     setTimeout(() => {
-      setShowPro("message")
-    }, 2500)
+      setShowPro("message")      
+      setShowPreLoad(false);
+    }, 3000)
+    setShowNav(false)
   }
 
   const skipProfile = () => {
+    let newProfile = Object.assign({}, perProfile);
+    newProfile.logged = true;
+    setPerProfile(newProfile)
+    let latUpdtAccts = Object.assign([], accCreated)
+    latUpdtAccts = accCreated.concat()
+    latUpdtAccts.filter((acct) => acct.username == perProfile.username && acct.email == perProfile.email).map((acct) => acct.logged = true)
+    setAccCreated(latUpdtAccts)
+    setShowPreLoad(true);
     setTimeout(() => {
-      setShowPro("message")
-    }, 2500)
+      setShowPro("message")      
+      setShowPreLoad(false);
+    }, 3000)
+    setShowNav(false)
   }
  
   return (

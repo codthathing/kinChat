@@ -3,10 +3,14 @@ import { NavigateContext } from "./navigateContext";
 
 const Email = () => {
 
-  const { setNavigate, setShowNav, perProfile } = useContext(NavigateContext)
+  const { setShowPreLoad, setNavigate, setShowNav, perProfile } = useContext(NavigateContext)
   const NavToLogin = (e) => {
     e.preventDefault();
-    setNavigate("LOGIN");
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setNavigate("EMAIL");
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false);
   }
 

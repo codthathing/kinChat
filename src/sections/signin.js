@@ -4,12 +4,16 @@ import { NavigateContext } from "./navigateContext";
 
 
 const LoginComp = () => {
-  const {perProfile, setNavigate, setShowNav } = useContext(NavigateContext);
+  const {perProfile, setNavigate, setShowNav, setShowPro, setShowPreLoad } = useContext(NavigateContext);
 
   const NavToSignUp = () => {
     if(perProfile) {
       setShowNav(false)
-      setNavigate("SIGNUP");
+      setShowPreLoad(true);
+      setTimeout(() => {
+        setNavigate("SIGNUP");
+        setShowPreLoad(false);
+      }, 3000)
     }
   }
 
@@ -18,12 +22,25 @@ const LoginComp = () => {
       setShowNav(false);
     } else {
       setShowNav(false);
-      setNavigate("MESSAGE");
+      setShowPreLoad(true);
+      setTimeout(() => {
+        setNavigate("MESSAGE");
+        setShowPreLoad(false);
+      }, 3000)
+      if(perProfile.logged) {
+        setShowPro("message")
+      } else if(!perProfile.logged) {
+        setShowPro("profile")
+      }
     }
   }
 
   const NavToLoginMain = () => {
-    setNavigate("LOGINALL");
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setNavigate("LOGINALL");
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false)
   }
  

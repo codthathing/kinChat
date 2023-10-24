@@ -4,10 +4,14 @@ import { NavigateContext } from "../navigateContext";
 
 const SignComp = () => {
 
-  const {setNavigate, setShowNav, accCreated, setAccCreated,setPerProfile } = useContext(NavigateContext)
+  const {setNavigate, setShowNav, accCreated, setShowPreLoad,setPerProfile } = useContext(NavigateContext)
 
   const NavToLogin = () => {
-    setNavigate("LOGIN");
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setNavigate("LOGIN");
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false)
   }
 
@@ -52,7 +56,8 @@ const SignComp = () => {
         password: accDetails.password,
         conPass: accDetails.conPass,
         username: accDetails.username,
-        profile: unknown
+        profile: unknown,
+        logged: false
       };
       if(Array.isArray(accCreated) && accCreated.length === 0) {
         if(perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
@@ -67,7 +72,11 @@ const SignComp = () => {
           setPerProfile(perAcc)
           setFeedDetails({...feedDetails, email:'', username:'', conPass:'', password:''});
           setAccDetails({email:'', password:'', conPass:'', username:''});
-          setNavigate("EMAIL");
+          setShowPreLoad(true);
+          setTimeout(() => {
+            setNavigate("EMAIL");
+            setShowPreLoad(false);
+          }, 3000)
           setShowNav(false);
         }
       } else {
@@ -112,7 +121,11 @@ const SignComp = () => {
             
           if(perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
             setPerProfile(perAcc)
-            setNavigate("EMAIL");
+            setShowPreLoad(true);
+            setTimeout(() => {
+              setNavigate("EMAIL");
+              setShowPreLoad(false);
+            }, 3000)
             setShowNav(false);
     
             accCreated.push(perAcc);

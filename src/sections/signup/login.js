@@ -3,10 +3,14 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginMain = () => {
 
-  const {setToPass, setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
+  const {setShowPreLoad, setShowPro, setToPass, setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
-    setNavigate("LOGIN")
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setNavigate("LOGIN");
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false)
   }
 
@@ -19,8 +23,13 @@ const LoginMain = () => {
           if(accDetails.email !== acct.email) {
             setFeedDetails("No account with email")
           } else if(accDetails.email === acct.email)  {
-            setShowLogin(false)
-            setShowLoginPass(true)
+            setShowPreLoad(true);
+            setTimeout(() => {
+              setShowLogin(false);
+              setShowLoginPass(true);
+              setShowPreLoad(false);
+            }, 3000)
+            setShowNav(false)
             setToPass(accDetails.email)
           }
         })
@@ -66,7 +75,16 @@ const LoginMain = () => {
               for(let i = 0; i < accCreated.length; i++) {
                 if(accDetails.email === accCreated[i].email && accDetails.password === accCreated[i].password) {
                   setPerProfile(accCreated[i]);
-                  setNavigate("MESSAGE");
+                  setShowPreLoad(true);
+                  setTimeout(() => {
+                    setNavigate("MESSAGE");
+                    setShowPreLoad(false);
+                  }, 3000)
+                  if(accCreated[i].logged) {
+                    setShowPro("message")
+                  } else if(!accCreated[i].logged) {
+                    setShowPro("profile")
+                  }
                   setFeedDetails("");
                 }
               }

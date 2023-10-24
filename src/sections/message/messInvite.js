@@ -9,13 +9,17 @@ const MessInvite = () => {
     type: "email",
     placeholder: "invitefriend@gmail.com"
   })
-  const {setShowMessDiv, setShowSearch, setShowNav, setShowInvite} = useContext(NavigateContext)
+  const {setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite} = useContext(NavigateContext)
 
   const CloseInvite = () => {
-    setShowSearch(false)
-    setShowMessDiv(true)
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setShowSearch(false);
+      setShowMessDiv(true);
+      setShowPreLoad(false);
+      setShowInvite(false);
+    }, 3000)
     setShowNav(false)
-    setShowInvite(false)
   }
 
   const [inptValue, setInptValue] = useState("")

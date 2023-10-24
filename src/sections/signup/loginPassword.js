@@ -3,11 +3,16 @@ import { NavigateContext } from "../navigateContext";
 
 const LoginPass = () => {
 
-  const {toPass, accCreated, setShowLogin, setShowLoginPass} = useContext(NavigateContext)
+  const {setShowNav, toPass, accCreated, setShowLogin, setShowPreLoad, setShowLoginPass} = useContext(NavigateContext)
 
   const NavToLogin = () => {
-    setShowLogin(true)
-    setShowLoginPass(false)
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setShowLogin(true)
+      setShowLoginPass(false)
+      setShowPreLoad(false);
+    }, 3000)
+    setShowNav(false)
   }
  
   const [passDetails, setPassDetails] = useState(
@@ -38,9 +43,10 @@ const LoginPass = () => {
 
   const [showPassChg, setShowPassChg] = useState(false)
   const BckToLogin = () => {
-    setShowPassChg(false)
-    setShowLogin(true)
-    setShowLoginPass(false)
+    setShowLogin(true);
+    setShowLoginPass(false);
+    setShowNav(false)
+    setShowPassChg(false);
   }
 
   const ChangePass = (e) => {
@@ -59,10 +65,12 @@ const LoginPass = () => {
           acct.password = passDetails.password;
           acct.conPass = passDetails.password;
         })
+        setShowPreLoad(true);
         setTimeout(() => {
-          setShowPassChg(true)
+          setShowPassChg(true);
+          setShowPreLoad(false);
           localStorage.setItem("accounts", JSON.stringify(chgPassAct))
-        }, 2500)
+        }, 3000)
         setPassDetails({...passDetails, password:'', conPass:''})
         setFeedDetails({...feedDetails, conPass:'', password:''})
       }

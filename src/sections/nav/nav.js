@@ -4,7 +4,7 @@ import { NavigateContext } from "../navigateContext";
 
 const NavComp = () => {
 
-  const { navigate, setNavigate, showNav, setShowNav, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
+  const { setShowPreLoad, navigate, setNavigate, showNav, setShowNav, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
 
   const showMenu = () => {
     if(showNav) {
@@ -15,27 +15,49 @@ const NavComp = () => {
   } 
 
   const NavToPro = () => {
-    setShowPro("profile")
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setShowPro("profile")      
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false)
-  }
-
-  const NavToLogin = () => {
-    setNavigate("LOGIN")
-    setShowNav(false)
-  }
-
-  const OpenSearch = () => {
-    setShowSearch(true)
-    setShowMessDiv(false)
-    setShowNav(false)
+    setShowSearch(false)
+    setShowMessDiv(true)
     setShowInvite(false)
   }
 
-  const OpenInvite = () => {
-    setShowSearch(false)
-    setShowMessDiv(false)
+  const NavToLogin = () => {
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setNavigate("LOGIN");
+      setShowPreLoad(false);
+    }, 3000)
     setShowNav(false)
-    setShowInvite(true)
+    setShowSearch(false)
+    setShowMessDiv(true)
+    setShowInvite(false)
+  }
+
+  const OpenSearch = () => {
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setShowSearch(true);
+      setShowMessDiv(false); 
+      setShowPreLoad(false);
+      setShowInvite(false);
+    }, 3000)
+    setShowNav(false)
+  }
+
+  const OpenInvite = () => {
+    setShowPreLoad(true);
+    setTimeout(() => {
+      setShowSearch(false);
+      setShowMessDiv(false);
+      setShowPreLoad(false);
+      setShowInvite(true);
+    }, 3000)
+    setShowNav(false)
   }
 
   const NavShowed = () => {
@@ -45,7 +67,7 @@ const NavComp = () => {
       return ( <p>Language</p> );
     } if (navigate == "EMAIL") {
       return ( <p>Language</p> );
-    } if(navigate == "LOGINMAIN") {
+    } if(navigate == "LOGINALL") {
       return ( <p>Language</p> ); 
     } if(navigate == "MESSAGE") {
       return (

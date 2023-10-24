@@ -6,11 +6,12 @@ import LoginAll from "./signup/loginAll";
 import SignComp from "./signup/signup";
 import Email from "./email";
 import { NavigateContext } from "./navigateContext";
+import preLoad from "./pre-loading.gif";
 
 
 const Home = () => {
 
-  const { navigate } = useContext(NavigateContext);  
+  const { navigate, showPreLoad } = useContext(NavigateContext);  
 
   const NavFunc = () => {
     if(navigate == "LOGIN") {
@@ -28,6 +29,11 @@ const Home = () => {
 
   return (
     <main id="body">
+      {showPreLoad &&
+        <div id="preLoadDiv">
+          <img id="preLoadImg" src={preLoad}/>
+        </div>
+      }
       <NavComp/>
       <NavFunc/> 
     </main>
