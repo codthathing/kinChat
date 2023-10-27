@@ -6,7 +6,8 @@ const NavComp = () => {
 
   const { setShowPreLoad, navigate, setNavigate, showNav, setShowNav, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
 
-  const showMenu = () => {
+  const showMenu = (e) => {
+    e.preventDefault();
     if(showNav) {
       setShowNav(false)
     } else if (!showNav) { 
@@ -100,4 +101,4 @@ const NavComp = () => {
 }
 
 
-export default NavComp;
+export default React.memo(NavComp);

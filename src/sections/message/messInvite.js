@@ -48,9 +48,11 @@ const MessInvite = () => {
     if(inptValue) {
       setEmailTo(inptValue)
       setInptValue("")
+      setShowPreLoad(true)
       setTimeout(() => {
+        setShowPreLoad(false)
         setShowEmail(true)
-      }, 2500)
+      }, 3000)
     }
   }
 
@@ -92,4 +94,4 @@ const MessInvite = () => {
   );
 }
 
-export default MessInvite;
+export default React.memo(MessInvite);

@@ -65,10 +65,10 @@ const LoginPass = () => {
           acct.password = passDetails.password;
           acct.conPass = passDetails.password;
         })
-        setShowPreLoad(true);
+        // setShowPreLoad(true);
         setTimeout(() => {
           setShowPassChg(true);
-          setShowPreLoad(false);
+          // setShowPreLoad(false);
           localStorage.setItem("accounts", JSON.stringify(chgPassAct))
         }, 3000)
         setPassDetails({...passDetails, password:'', conPass:''})

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import unknown from "../unknown/unknown_black.jpeg";
 import { NavigateContext } from "../navigateContext";
 
-
+        
 const MessDiv = () => {
   const { perProfile } = useContext(NavigateContext)
   return (
