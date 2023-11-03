@@ -17,7 +17,7 @@ const LoginPass = () => {
  
   const [passDetails, setPassDetails] = useState(
     { password:'',
-      conPass:''
+      conPass:''git 
   })
 
   const handleDetails = (e) => {
@@ -65,10 +65,10 @@ const LoginPass = () => {
           acct.password = passDetails.password;
           acct.conPass = passDetails.password;
         })
-        // setShowPreLoad(true);
+        setShowPreLoad(true);
         setTimeout(() => {
           setShowPassChg(true);
-          // setShowPreLoad(false);
+          setShowPreLoad(false);
           localStorage.setItem("accounts", JSON.stringify(chgPassAct))
         }, 3000)
         setPassDetails({...passDetails, password:'', conPass:''})
@@ -138,7 +138,7 @@ const LoginPass = () => {
         </form>
       </main>
 
-      {showPassChg &&
+      {showPassChg == "TRUE" &&
         <div className="ivtVerDiv">
           <main className="ivtVerMain">
             <p className="ivtVerPar">Password change to account <b>{toPass}</b> successfull!</p>

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavigateContext } from "../navigateContext";
 
 
 const NavComp = () => {
 
-  const { setShowPreLoad, navigate, setNavigate, showNav, setShowNav, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
+  const { setShowPreLoad, navigate, setNavigate, setShowPro, setShowSearch, setShowMessDiv, setShowInvite } = useContext(NavigateContext)
 
   const showMenu = (e) => {
     e.preventDefault();
@@ -14,6 +14,7 @@ const NavComp = () => {
       setShowNav(true)
     }
   } 
+  const [showNav, setShowNav] = useState(false)
 
   const NavToPro = () => {
     setShowPreLoad(true);
