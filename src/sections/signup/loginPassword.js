@@ -17,7 +17,7 @@ const LoginPass = () => {
  
   const [passDetails, setPassDetails] = useState(
     { password:'',
-      conPass:''git 
+      conPass:''
   })
 
   const handleDetails = (e) => {
