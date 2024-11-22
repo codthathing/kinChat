@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { NavigateContext } from "./navigateContext";
+import { NavigateContext } from "../services/providers/navigateContext";
 
 
 
 const LoginComp = () => {
-  const {perProfile, setNavigate, setShowNav, setShowPro, setShowPreLoad } = useContext(NavigateContext);
+  const { perProfile, setNavigate, setShowNav, setShowPro, setShowPreLoad } = useContext(NavigateContext);
 
   const NavToSignUp = () => {
-    if(perProfile) {
+    if (perProfile) {
       setShowNav(false)
       setShowPreLoad(true);
       setTimeout(() => {
@@ -18,7 +18,7 @@ const LoginComp = () => {
   }
 
   const NavToMessage = () => {
-    if(perProfile == null || Object.keys(perProfile).length === 0) {
+    if (perProfile == null || Object.keys(perProfile).length === 0) {
       setShowNav(false);
     } else {
       setShowNav(false);
@@ -27,9 +27,9 @@ const LoginComp = () => {
         setNavigate("MESSAGE");
         setShowPreLoad(false);
       }, 3000)
-      if(perProfile.logged) {
+      if (perProfile.logged) {
         setShowPro("message")
-      } else if(!perProfile.logged) {
+      } else if (!perProfile.logged) {
         setShowPro("profile")
       }
     }
@@ -43,7 +43,7 @@ const LoginComp = () => {
     }, 3000)
     setShowNav(false)
   }
- 
+
   return (
     <section className="sections">
       <main className="mainDiv">
@@ -64,7 +64,7 @@ const LoginComp = () => {
                 <span onClick={NavToLoginMain} className="logSpan">Login in with Email</span>
               </button>
             </div>
-          </section> 
+          </section>
         </div>
         <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText">Sign Up</span></p>
       </main>

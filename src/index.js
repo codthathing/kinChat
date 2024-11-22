@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './style.css';
-import Home from './sections/home';
-import { OptNavProvider } from './sections/navigateContext';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "./styles/style.css";
+import App from "./pages/App";
+import { NavigateContextProvider } from "./services/providers/navigateContext";
 
-const Default = () => {
-  return (
-    <OptNavProvider>
-      <Home/>
-    </OptNavProvider>
-  );
-};
-
-ReactDOM.render(<Default/>, document.getElementById("root"))
-
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <NavigateContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </NavigateContextProvider>
+  </StrictMode>
+);

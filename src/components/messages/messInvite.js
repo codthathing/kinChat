@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavigateContext } from "../navigateContext";
+import { NavigateContext } from "../../services/providers/navigateContext";
 
 const MessInvite = () => {
 
@@ -9,7 +9,7 @@ const MessInvite = () => {
     type: "email",
     placeholder: "invitefriend@gmail.com"
   })
-  const {setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite} = useContext(NavigateContext)
+  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite } = useContext(NavigateContext)
 
   const CloseInvite = () => {
     setShowPreLoad(true);
@@ -24,14 +24,14 @@ const MessInvite = () => {
 
   const [inptValue, setInptValue] = useState("")
   const NavEntInpt = () => {
-    if(entText == "Use phone number") {
+    if (entText == "Use phone number") {
       setEntText("Use e-mail address")
       setFillText({
         toFill: "Fill in the phone number",
         type: "number",
         placeholder: "+234 - 90 - 0000 - 0000"
       })
-    } if(entText == "Use e-mail address") {
+    } if (entText == "Use e-mail address") {
       setEntText("Use phone number")
       setFillText({
         toFill: "Fill in the e-mail address",
@@ -45,7 +45,7 @@ const MessInvite = () => {
   const [showEmail, setShowEmail] = useState(false)
   const SendLink = (e) => {
     e.preventDefault();
-    if(inptValue) {
+    if (inptValue) {
       setEmailTo(inptValue)
       setInptValue("")
       setShowPreLoad(true)
@@ -69,12 +69,12 @@ const MessInvite = () => {
         <h1 id="ivtHead">Invite a friend to chat with you on kinChat</h1>
         <div id="ivtDiv">
           <p id="ivtDivPar">{fillText.toFill}</p>
-          <input type={fillText.type} 
-            className="ivtInpt" 
+          <input type={fillText.type}
+            className="ivtInpt"
             name="email"
             value={inptValue}
             onChange={(e) => setInptValue(e.target.value)}
-            placeholder={fillText.placeholder}/>
+            placeholder={fillText.placeholder} />
           <p onClick={NavEntInpt} className="linkText" id="ivtDivSpn">{entText}</p>
         </div>
         <button onClick={SendLink} id="ivtBtn">Send invite</button>
@@ -86,7 +86,7 @@ const MessInvite = () => {
           <main className="ivtVerMain">
             <p className="ivtVerPar">Invitation link sent to <b>{emailTo}</b></p>
             <button onClick={() => setShowEmail(false)} className="ivtVerBtn">Ok</button>
-          </main> 
+          </main>
         </div>
       }
 

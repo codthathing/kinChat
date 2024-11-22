@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavigateContext } from "./navigateContext";
+import { NavigateContext } from "../services/providers/navigateContext";
 
 const Email = () => {
 
@@ -18,12 +18,12 @@ const Email = () => {
     <main className="sections" id="mainVer">
       <h1 id="verHead">Verify Your E-mail Address</h1>
       <p id="verPara">
-        Hi,<br/> Verification E-mail sent to <b>{perProfile.email}</b>. Click on the button below to verify your 
+        Hi,<br /> Verification E-mail sent to <b>{perProfile.email}</b>. Click on the button below to verify your
         E-mail Address
       </p>
       <button onClick={NavToLogin} id="verBtn">Login</button>
     </main>
-  ); 
+  );
 }
 
 export default Email;
