@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavigateContext } from "../services/providers/navigateContext";
 
 
 
 const LoginComp = () => {
-  const { perProfile, setNavigate, setShowNav, setShowPro, setShowPreLoad } = useContext(NavigateContext);
+  const { perProfile, setNavigate, setShowNav, setShowPreLoad } = useContext(NavigateContext);
+
+  const navigate = useNavigate();
 
   const NavToSignUp = () => {
     if (perProfile) {
@@ -18,22 +21,9 @@ const LoginComp = () => {
   }
 
   const NavToMessage = () => {
-    if (perProfile == null || Object.keys(perProfile).length === 0) {
-      setShowNav(false);
-    } else {
-      setShowNav(false);
-      setShowPreLoad(true);
-      setTimeout(() => {
-        setNavigate("MESSAGE");
-        setShowPreLoad(false);
-      }, 3000)
-      if (perProfile.logged) {
-        setShowPro("message")
-      } else if (!perProfile.logged) {
-        setShowPro("profile")
-      }
-    }
-  }
+    navigate("/message");
+  };
+
 
   const NavToLoginMain = () => {
     setShowPreLoad(true);
@@ -44,27 +34,28 @@ const LoginComp = () => {
     setShowNav(false)
   }
 
+  const signupOptions = [
+    { id: 0, icon: "fa-brands fa-google", text: "Login in with Google", functions: NavToMessage },
+    { id: 1, icon: "fa-solid fa-envelope", text: "Login in with Email", functions: NavToLoginMain }
+  ];
+
   return (
     <section className="sections">
       <main className="mainDiv">
         <h1 className="signHead">Continue with</h1>
         <div id="logDiv">
-          <section className="signSec">
-            <div className="signDiv">
-              <button className="logBtn">
-                <i className="fa-brands fa-google signIcon"></i>
-                <span onClick={NavToMessage} className="logSpan">Login in with Google</span>
-              </button>
-            </div>
-          </section>
-          <section className="signSec">
-            <div className="signDiv">
-              <button className="logBtn">
-                <i className="fa-solid fa-envelope signIcon"></i>
-                <span onClick={NavToLoginMain} className="logSpan">Login in with Email</span>
-              </button>
-            </div>
-          </section>
+          {signupOptions.map(({ id, icon, text, functions }) => {
+            return (
+              <section key={id} className="signSec">
+                <div className="signDiv">
+                  <button onClick={functions} className="logBtn">
+                    <i className={`${icon} signIcon`}></i>
+                    <span className="logSpan">{text}</span>
+                  </button>
+                </div>
+              </section>
+            );
+          })}
         </div>
         <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText">Sign Up</span></p>
       </main>
