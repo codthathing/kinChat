@@ -9,7 +9,7 @@ const MessInvite = () => {
     type: "email",
     placeholder: "invitefriend@gmail.com"
   })
-  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite } = useContext(NavigateContext)
+  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite, setInviteFriends } = useContext(NavigateContext)
 
   const CloseInvite = () => {
     setShowPreLoad(true);
@@ -59,7 +59,7 @@ const MessInvite = () => {
   return (
     <div>
 
-      <div onClick={CloseInvite} className="bacLogDiv">
+      <div onClick={() => setInviteFriends(false)} className="bacLogDiv">
         <i className="fa-solid fa-chevron-left bacToLog"></i>
         <span className="bacToLogSpan">Back</span>
       </div>

@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
 import { NavigateContext } from "../services/providers/navigateContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginMain = () => {
 
   const { setShowPreLoad, setShowPro, setToPass, setNavigate, setShowNav, accCreated, setPerProfile, setShowLogin, setShowLoginPass } = useContext(NavigateContext)
+
+  const navigate = useNavigate();
 
   const NavToLogin = () => {
     setShowPreLoad(true);
@@ -100,7 +103,7 @@ const LoginMain = () => {
 
   return (
     <section className="sections">
-      <div onClick={NavToLogin} class="bacLogDiv">
+      <div onClick={() => navigate(-1)} className="bacLogDiv">
         <i className="fa-solid fa-chevron-left bacToLog"></i>
         <span className="bacToLogSpan">Back</span>
       </div>
@@ -112,11 +115,9 @@ const LoginMain = () => {
             <div className="signDiv">
               <i className="fa-solid fa-envelope signIcon"></i>
               <input type="text"
-                key={1}
                 name="email"
                 value={accDetails.email}
                 onChange={handleDetails}
-                id=""
                 placeholder="Email address"
                 className="signInput" />
             </div>
@@ -127,17 +128,15 @@ const LoginMain = () => {
               <i className="fa-solid fa-unlock signIcon"></i>
               <input
                 type={showPass.detType ? "text" : "password"}
-                key={3}
                 name="password"
                 value={accDetails.password}
                 onChange={handleDetails}
-                id=""
                 placeholder="Password"
                 className="signInput" />
               <i className={showPass.class} onClick={TogPass}></i>
             </div>
           </section>
-          <p className="linkText" onClick={NavToLoginPass}>Forgotten password?</p>
+          <p className="linkText" onClick={() => navigate("/change-password")}>Forgotten password?</p>
 
           <button type="submit" className="signBtns">
             Login

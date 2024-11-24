@@ -5,7 +5,7 @@ import { NavigateContext } from "../../services/providers/navigateContext";
 const MesSearch = () => {
 
   const [search, setSearch] = useState("")
-  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite } = useContext(NavigateContext)
+  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite, setSearchAccount } = useContext(NavigateContext)
 
   const CloseSearch = () => {
     setShowPreLoad(true);
@@ -22,7 +22,7 @@ const MesSearch = () => {
     <div>
       <section className="messDivSec" id="mesSrhSec">
         <div id="mesSrhDiv">
-          <i className="fa-solid fa-chevron-left mesDivIcn" onClick={CloseSearch} id="mesDivBckIcn"></i>
+          <i className="fa-solid fa-chevron-left mesDivIcn" onClick={() => setSearchAccount(false)} id="mesDivBckIcn"></i>
           <div id="mesIntDiv">
             <input
               type="text"

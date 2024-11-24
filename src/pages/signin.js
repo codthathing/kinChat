@@ -1,42 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { NavigateContext } from "../services/providers/navigateContext";
-
-
 
 const LoginComp = () => {
-  const { perProfile, setNavigate, setShowNav, setShowPreLoad } = useContext(NavigateContext);
-
   const navigate = useNavigate();
 
-  const NavToSignUp = () => {
-    if (perProfile) {
-      setShowNav(false)
-      setShowPreLoad(true);
-      setTimeout(() => {
-        setNavigate("SIGNUP");
-        setShowPreLoad(false);
-      }, 3000)
-    }
-  }
-
-  const NavToMessage = () => {
-    navigate("/message");
-  };
-
-
-  const NavToLoginMain = () => {
-    setShowPreLoad(true);
-    setTimeout(() => {
-      setNavigate("LOGINALL");
-      setShowPreLoad(false);
-    }, 3000)
-    setShowNav(false)
-  }
-
   const signupOptions = [
-    { id: 0, icon: "fa-brands fa-google", text: "Login in with Google", functions: NavToMessage },
-    { id: 1, icon: "fa-solid fa-envelope", text: "Login in with Email", functions: NavToLoginMain }
+    { id: 0, icon: "fa-brands fa-google", text: "Login in with Google", functions: () => navigate("/message") },
+    { id: 1, icon: "fa-solid fa-envelope", text: "Login in with Email", functions: () => navigate("/login") }
   ];
 
   return (
@@ -57,7 +27,7 @@ const LoginComp = () => {
             );
           })}
         </div>
-        <p id="logText">No account yet? <span onClick={NavToSignUp} className="linkText">Sign Up</span></p>
+        <p id="logText">No account yet? <span onClick={() => navigate("/sign-up")} className="linkText">Sign Up</span></p>
       </main>
     </section>
   );

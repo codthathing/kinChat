@@ -1,9 +1,12 @@
 import React, { useContext, useState } from "react";
 import { NavigateContext } from "../../services/providers/navigateContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginPass = () => {
 
   const { setShowNav, toPass, accCreated, setShowLogin, setShowPreLoad, setShowLoginPass } = useContext(NavigateContext)
+
+  const navigate = useNavigate();
 
   const NavToLogin = () => {
     setShowPreLoad(true);
@@ -80,7 +83,7 @@ const LoginPass = () => {
 
   return (
     <section className="sections">
-      <div onClick={NavToLogin} className="bacLogDiv">
+      <div onClick={() => navigate(-1)} className="bacLogDiv">
         <i className="fa-solid fa-chevron-left bacToLog"></i>
         <span className="bacToLogSpan">Back</span>
       </div>
@@ -92,10 +95,8 @@ const LoginPass = () => {
             <div className="signDiv">
               <i className="fa-solid fa-envelope signIcon"></i>
               <input type="text"
-                key={1}
                 name="email"
                 value={toPass}
-                id=""
                 placeholder="Email address"
                 className="signInput"
                 readOnly />
@@ -106,11 +107,9 @@ const LoginPass = () => {
               <i className="fa-solid fa-unlock signIcon"></i>
               <input
                 type={showPass.detType ? "text" : "password"}
-                key={3}
                 name="password"
                 value={passDetails.password}
                 onChange={handleDetails}
-                id=""
                 placeholder="New password"
                 className="signInput" />
               <i className={showPass.class} onClick={TogPass}></i>
@@ -122,11 +121,9 @@ const LoginPass = () => {
               <i className="fa-solid fa-lock signIcon"></i>
               <input
                 type={showPass.detType ? "text" : "password"}
-                key={3}
                 name="conPass"
                 value={passDetails.conPass}
                 onChange={handleDetails}
-                id=""
                 placeholder="Confirm Password"
                 className="signInput" />
             </div>

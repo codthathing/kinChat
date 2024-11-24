@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import unknown_icon from "../../assets/images/unknown-icon.jpeg";
-import { NavigateContext } from "../../services/providers/navigateContext";
 
 
 const MessDiv = () => {
-  const { perProfile } = useContext(NavigateContext)
   return (
     <>
       <section className="messDivSec" id="proSec">
         <h5 className="mesPerHead">Profile</h5>
         <div className="mesPerDiv" id="mesProDiv">
           <div className="mesImgUserDiv">
-            <img src={perProfile.profile} alt="" className="mesImg" />
-            <p className="mesUser">{perProfile.username}</p>
+            <img src={unknown_icon} alt="" className="mesImg" />
+            <p className="mesUser">Oluwasegun</p>
           </div>
           <span className="mesActive">online</span>
         </div>

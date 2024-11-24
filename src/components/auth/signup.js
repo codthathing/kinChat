@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import unknown_icon from '../../assets/images/unknown-icon.jpeg';
 import { NavigateContext } from "../../services/providers/navigateContext";
+import { useNavigate } from "react-router-dom";
 
 const SignComp = () => {
 
   const { setNavigate, setShowNav, accCreated, setShowPreLoad, setPerProfile } = useContext(NavigateContext)
 
+  const navigate = useNavigate();
+  
   const NavToLogin = () => {
     setShowPreLoad(true);
     setTimeout(() => {
@@ -142,7 +145,7 @@ const SignComp = () => {
 
   return (
     <section className="sections">
-      <div onClick={NavToLogin} className="bacLogDiv">
+      <div onClick={() => navigate(-1)} className="bacLogDiv">
         <i className="fa-solid fa-chevron-left bacToLog"></i>
         <span className="bacToLogSpan">Back</span>
       </div>
@@ -153,11 +156,9 @@ const SignComp = () => {
             <div className="signDiv">
               <i className="fa-solid fa-envelope signIcon"></i>
               <input type="text"
-                key={1}
                 name="email"
                 value={accDetails.email}
                 onChange={handleDetails}
-                id=""
                 placeholder="Email address"
                 className="signInput" />
             </div>
@@ -168,12 +169,10 @@ const SignComp = () => {
               <i className="fa-solid fa-lock signIcon"></i>
               <input
                 type={showPass.detType ? "text" : "password"}
-                key={2}
                 name="password"
                 title="Password must be 8 words minimum"
                 value={accDetails.password}
                 onChange={handleDetails}
-                id=""
                 placeholder="Type Password"
                 className="signInput" />
               <i className={showPass.class} onClick={TogPass}></i>
@@ -185,11 +184,9 @@ const SignComp = () => {
               <i className="fa-solid fa-lock signIcon"></i>
               <input
                 type={showPass.detType ? "text" : "password"}
-                key={3}
                 name="conPass"
                 value={accDetails.conPass}
                 onChange={handleDetails}
-                id=""
                 placeholder="Confirm Password"
                 className="signInput" />
             </div>
@@ -200,11 +197,9 @@ const SignComp = () => {
               <i className="fa-solid fa-user signIcon"></i>
               <input
                 type="text"
-                key={4}
                 name="username"
                 value={accDetails.username}
                 onChange={handleDetails}
-                id=""
                 placeholder="Username"
                 className="signInput" />
             </div>
