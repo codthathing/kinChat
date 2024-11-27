@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavigateContext } from "../services/providers/navigateContext";
+import { NavigateContext } from "../../services/providers/navigateContext";
 
 const Email = () => {
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { NavigateContext } from "../services/providers/navigateContext";
+import { NavigateContext } from "../../services/providers/navigateContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginMain = () => {

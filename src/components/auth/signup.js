@@ -5,143 +5,42 @@ import { useNavigate } from "react-router-dom";
 
 const SignComp = () => {
 
-  const { setNavigate, setShowNav, accCreated, setShowPreLoad, setPerProfile } = useContext(NavigateContext)
+  const { setNavigate, setShowNav, accCreated, setShowPreLoad, setPerProfile, setAccounts, accounts } = useContext(NavigateContext)
 
   const navigate = useNavigate();
-  
-  const NavToLogin = () => {
-    setShowPreLoad(true);
-    setTimeout(() => {
-      setNavigate("LOGIN");
-      setShowPreLoad(false);
-    }, 3000)
-    setShowNav(false)
-  }
 
-  const [accDetails, setAccDetails] = useState(
-    {
-      email: '',
-      password: '',
-      conPass: '',
-      username: '',
-    })
-  const [showPass, setShowPass] = useState({
-    detType: false,
-    class: "fa-solid fa-eye showPass"
-  })
-
-  const TogPass = () => {
-    if (showPass.detType) {
-      setShowPass({ ...showPass, detType: false, class: "fa-solid fa-eye showPass" })
-    } else if (!showPass.detType) {
-      setShowPass({ ...showPass, detType: true, class: "fa-solid fa-eye-slash showPass" })
-    }
-  }
-
+  const [accDetails, setAccDetails] = useState({ email: "", password: "", conPass: "", username: "", });
   const handleDetails = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setAccDetails({ ...accDetails, [name]: value });
-  }
+  };
 
-  const [feedDetails, setFeedDetails] = useState({
-    email: '',
-    conPass: '',
-    username: '',
-    password: ''
-  });
+  const [showPass, setShowPass] = useState(false);
+
+  const [feedDetails, setFeedDetails] = useState({ email: "", conPass: "", username: "", password: "" });
 
   const createAcc = (e) => {
     e.preventDefault();
+    const newFeedBack = { email: "", conPass: "", username: "", password: "" };
     if (accDetails.email && accDetails.password && accDetails.conPass && accDetails.username) {
-      let perAcc = {
-        id: accCreated.length,
-        email: accDetails.email,
-        password: accDetails.password,
-        conPass: accDetails.conPass,
-        username: accDetails.username,
-        profile: unknown_icon,
-        logged: false
-      };
-      if (Array.isArray(accCreated) && accCreated.length === 0) {
-        if (perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
-          setFeedDetails({ ...feedDetails, email: '', username: '', conPass: 'Password not matching', password: 'Password entered not upto 8 words' });
-        } if (perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
-          setFeedDetails({ ...feedDetails, email: '', username: '', conPass: '', password: 'Password entered not upto 8 words' });
-        } if (perAcc.password !== perAcc.conPass && [...perAcc.password].length >= 8) {
-          setFeedDetails({ ...feedDetails, email: '', username: '', conPass: 'Password not matching', password: '' });
-        } if (perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
-          accCreated.push(perAcc)
-          localStorage.setItem('accounts', JSON.stringify(accCreated));
-          setPerProfile(perAcc)
-          setFeedDetails({ ...feedDetails, email: '', username: '', conPass: '', password: '' });
-          setAccDetails({ email: '', password: '', conPass: '', username: '' });
-          setShowPreLoad(true);
-          setTimeout(() => {
-            setNavigate("EMAIL");
-            setShowPreLoad(false);
-          }, 3000)
-          setShowNav(false);
-        }
+      if (accounts.some(({ email, username }) => email === accDetails.email || username === accDetails.username) || accDetails.password.length < 8 || accDetails.password !== accDetails.conPass) {
+        if (accounts.some(({ email }) => email === accDetails.email)) newFeedBack.email = "Email already used";
+        if (accounts.some(({ username }) => username === accDetails.username)) newFeedBack.username = "Username already used";
+        if (accDetails.password.length < 8) newFeedBack.password = "Password entered not upto 8 words";
+        if (accDetails.password !== accDetails.conPass) newFeedBack.conPass = "Password not matching";
       } else {
-        for (let i = 0; i < accCreated.length; i++) {
-          if (perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
-            setFeedDetails({ ...feedDetails, email: 'Email already used', username: '', conPass: '', password: '' });
-            break;
-          } if (perAcc.email == accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: 'Email already used', username: '', conPass: '', password: 'Password entered not upto 8 words' });
-            break;
-          }
-
-          if (perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: 'Username already used', conPass: '', password: '' });
-            break;
-          } if (perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: 'Username already used', conPass: '', password: 'Password entered not upto 8 words' });
-            break;
-          }
-
-          if (perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length >= 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: '', conPass: 'Password not matching', password: '' });
-            break;
-          } if (perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: '', conPass: 'Password not matching', password: 'Password entered not upto 8 words' });
-            break;
-          }
-
-          if (perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: '', conPass: '', password: 'Password entered not upto 8 words' });
-            break;
-          } if (perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: 'Email already used', username: 'Username alreay used', conPass: '', password: 'Password entered not upto 8 words' });
-            break;
-          } if (perAcc.email !== accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: '', username: 'Username already used', conPass: 'Password not matching', password: 'Password entered not upto 8 words' });
-            break;
-          } if (perAcc.email == accCreated[i].email && perAcc.username == accCreated[i].username && perAcc.password !== perAcc.conPass && [...perAcc.password].length < 8) {
-            setFeedDetails({ ...feedDetails, email: 'Email already used', username: '', conPass: 'Password not matching', password: 'Password entered not upto 8 words' });
-            break;
-          }
-
-          if (perAcc.email !== accCreated[i].email && perAcc.username !== accCreated[i].username && perAcc.password == perAcc.conPass && [...perAcc.password].length >= 8) {
-            setPerProfile(perAcc)
-            setShowPreLoad(true);
-            setTimeout(() => {
-              setNavigate("EMAIL");
-              setShowPreLoad(false);
-            }, 3000)
-            setShowNav(false);
-
-            accCreated.push(perAcc);
-            localStorage.setItem('accounts', JSON.stringify(accCreated));
-            setFeedDetails({ ...feedDetails, email: '', username: '', conPass: '', password: '' });
-            setAccDetails({ email: '', password: '', conPass: '', username: '' });
-            break;
-          };
-        }
-      }
-    }
-  }
+        const perAcc = { id: accCreated.length, email: accDetails.email, password: accDetails.password, conPass: accDetails.conPass, username: accDetails.username, profile: unknown_icon, logged: false };
+        // setAccounts([...accounts, perAcc]);
+      };
+    } else {
+      if (!accDetails.email) newFeedBack.email = "Email is a required field";
+      if (!accDetails.username) newFeedBack.username = "Kindly enter your username";
+      if (!accDetails.password) newFeedBack.password = "Enter a password with at least 8 characters";
+      if (!accDetails.conPass) newFeedBack.conPass = "Kindly confirm your password";
+    };
+    setFeedDetails(newFeedBack);
+  };
 
   return (
     <section className="sections">
@@ -168,14 +67,14 @@ const SignComp = () => {
             <div className="signDiv">
               <i className="fa-solid fa-lock signIcon"></i>
               <input
-                type={showPass.detType ? "text" : "password"}
+                type={showPass ? "text" : "password"}
                 name="password"
                 title="Password must be 8 words minimum"
                 value={accDetails.password}
                 onChange={handleDetails}
                 placeholder="Type Password"
                 className="signInput" />
-              <i className={showPass.class} onClick={TogPass}></i>
+              <i className={`fa-solid fa-${showPass ? "eye-slash" : "eye"} showPass`} onClick={() => setShowPass(!showPass)}></i>
             </div>
             <p className="signText">{feedDetails.password}</p>
           </section>
@@ -183,7 +82,7 @@ const SignComp = () => {
             <div className="signDiv">
               <i className="fa-solid fa-lock signIcon"></i>
               <input
-                type={showPass.detType ? "text" : "password"}
+                type={showPass ? "text" : "password"}
                 name="conPass"
                 value={accDetails.conPass}
                 onChange={handleDetails}

@@ -1,5 +1,5 @@
 import React from "react";
-import MessDiv from "../components/messages/messDiv";
+import MessDiv from "./messDiv";
 
 const MessComp = () => {
   return (

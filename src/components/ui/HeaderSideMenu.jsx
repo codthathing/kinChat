@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { NavigateContext } from "../../services/providers/navigateContext";
 
 const HeaderSideMenu = () => {
-  const { setSearchAccount, setInviteFriends, setProfile, showSideMenu, setShowSideMenu } = useContext(NavigateContext);
+  const { showSideMenu, setShowSideMenu, showPages, setShowPages } = useContext(NavigateContext);
 
   const location = useLocation().pathname;
 
@@ -11,24 +11,12 @@ const HeaderSideMenu = () => {
 
   useEffect(() => {
     setShowSideMenu(false);
-  }, [location]);
+  }, [showPages]);
 
   const sideMenuOptions = [
-    { id: 0, text: "Update profile", functions: () => {
-      setProfile(true);
-      setInviteFriends(false);
-      setSearchAccount(false);
-    } },
-    { id: 1, text: "Invite a friend", functions: () => {
-      setInviteFriends(true);
-      setProfile(false);
-      setSearchAccount(false);
-    } },
-    { id: 2, text: "Find an account", functions: () => {
-      setSearchAccount(true);
-      setProfile(false);
-      setInviteFriends(false);
-    } },
+    { id: 0, text: "Update profile", functions: () => setShowPages({ profile: true, search: false, invite: false }) },
+    { id: 1, text: "Invite a friend", functions: () => setShowPages({ profile: false, search: false, invite: true }) },
+    { id: 2, text: "Find an account", functions: () => setShowPages({ profile: false, search: true, invite: false }) },
     { id: 3, text: "Log out", functions: () => navigate("/") }
   ];
 

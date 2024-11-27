@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import LoginMain from "../../pages/login";
+import LoginMain from "./login";
 import LoginPass from "./loginPassword";
 import { NavigateContext } from "../../services/providers/navigateContext";
 

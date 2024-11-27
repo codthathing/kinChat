@@ -5,31 +5,15 @@ import { NavigateContext } from "../../services/providers/navigateContext";
 const MesSearch = () => {
 
   const [search, setSearch] = useState("")
-  const { setShowPreLoad, setShowMessDiv, setShowSearch, setShowNav, setShowInvite, setSearchAccount } = useContext(NavigateContext)
-
-  const CloseSearch = () => {
-    setShowPreLoad(true);
-    setTimeout(() => {
-      setShowSearch(false);
-      setShowMessDiv(true);
-      setShowPreLoad(false);
-      setShowInvite(false);
-    }, 3000)
-    setShowNav(false)
-  }
+  const { showPages, setShowPages } = useContext(NavigateContext)
 
   return (
     <div>
       <section className="messDivSec" id="mesSrhSec">
         <div id="mesSrhDiv">
-          <i className="fa-solid fa-chevron-left mesDivIcn" onClick={() => setSearchAccount(false)} id="mesDivBckIcn"></i>
+          <i className="fa-solid fa-chevron-left mesDivIcn" onClick={() => setShowPages({...showPages, search: false})} id="mesDivBckIcn"></i>
           <div id="mesIntDiv">
-            <input
-              type="text"
-              id="mesDivInt"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search" />
+            <input type="text" id="mesDivInt" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
           </div>
           <i className="fa-solid fa-magnifying-glass mesDivIcn" id="mesDivSrhIcn"></i>
         </div>
