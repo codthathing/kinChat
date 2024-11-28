@@ -3,22 +3,22 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { NavigateContext } from "./services/providers/navigateContext";
 import Header from "./components/ui/Header";
 import PreloadAnimation from "./components/commons/PreloadAnimation";
-import UploadDiv from "./components/messages/profile";
-import MesSearch from "./components/messages/mesSearch";
-import MessInvite from "./components/messages/messInvite";
-import MessComp from "./components/messages/message";
-import LoginComp from "./components/auth/signin";
-import LoginAll from "./components/auth/loginAll";
-import SignComp from "./components/auth/signup";
-import Email from "./components/auth/email";
-import LoginPass from "./components/auth/loginPassword";
+import UserProfile from "./components/user/UserProfile";
+import UserSearch from "./components/user/UserSearch";
+import UserInvite from "./components/user/UserInvite";
+import UserPage from "./pages/UserPage";
+import SignInPage from "./pages/SignInPage";
+import LoginPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
+import EmailConfirmationPage from "./pages/EmailConfirmationPage";
+import PasswordChangePage from "./pages/PasswordChangePage";
 
 const App = () => {
   const { setShowSideMenu, showPages, setShowPages } = useContext(NavigateContext);
   const location = decodeURIComponent(useLocation().pathname);
 
   useEffect(() => {
-    {location === "/message" && setShowPages({profile: false, invite: false, search: false})};
+    { location === "/message" && setShowPages({ profile: false, invite: false, search: false }) };
     setShowSideMenu(false);
   }, [location]);
 
@@ -27,17 +27,17 @@ const App = () => {
       <Header />
       <PreloadAnimation />
       <Routes>
-        <Route exact path="/" element={<LoginComp />} />
-        <Route path="/login" element={<LoginAll />} />
-        <Route path="/sign-up" element={<SignComp />} />
-        <Route path="/email-confirmation" element={<Email />} />
-        <Route path="/change-password" element={<LoginPass />} />
+        <Route exact path="/" element={<SignInPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/email-confirmation" element={<EmailConfirmationPage />} />
+        <Route path="/change-password" element={<PasswordChangePage />} />
         {(showPages.profile || showPages.search || showPages.invite) && <Route path={location} element={<>
-          {showPages.search && <MesSearch />}
-          {showPages.profile && <UploadDiv />}
-          {showPages.invite && <MessInvite />}
+          {showPages.search && <UserSearch />}
+          {showPages.profile && <UserProfile />}
+          {showPages.invite && <UserInvite />}
         </>} />}
-        <Route path="/message" element={<MessComp />} />
+        <Route path="/message" element={<UserPage />} />
       </Routes>
     </>
   );

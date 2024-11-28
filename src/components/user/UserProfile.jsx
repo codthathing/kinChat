@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NavigateContext } from "../../services/providers/navigateContext";
 import unknown_icon from "../../assets/images/unknown-icon.jpeg";
 
-const UploadDiv = () => {
+const UserProfile = () => {
 
   const { showPages, setShowPages } = useContext(NavigateContext)
 
@@ -32,4 +32,4 @@ const UploadDiv = () => {
   );
 }
 
-export default UploadDiv;
+export default UserProfile;

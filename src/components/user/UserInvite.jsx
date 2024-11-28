@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavigateContext } from "../../services/providers/navigateContext";
+import PageBack from "../commons/PageBack";
 
-const MessInvite = () => {
+const UserInvite = () => {
   const { setShowPages, showPages } = useContext(NavigateContext);
   const [presentInviteFormat, setPresentInviteFormat] = useState(false);
 
@@ -19,7 +20,7 @@ const MessInvite = () => {
 
   return (
     <div>
-      <div onClick={() => setShowPages({ ...showPages, invite: false })} className="bacLogDiv"><i className="fa-solid fa-chevron-left bacToLog"></i><span className="bacToLogSpan">Back</span></div>
+      <PageBack buttonFunction={() => setShowPages({ ...showPages, invite: false })} />
       <section id="mesIvtSec">
         <h1 id="ivtHead">Invite a friend to chat with you on kinChat</h1>
         <div id="ivtDiv">
@@ -33,4 +34,4 @@ const MessInvite = () => {
   );
 }
 
-export default React.memo(MessInvite);
+export default React.memo(UserInvite);

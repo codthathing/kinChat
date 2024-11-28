@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { NavigateContext } from "../../services/providers/navigateContext";
+import { NavigateContext } from "../services/providers/navigateContext";
 
-const Email = () => {
+const EmailConfirmationPage = () => {
 
   const { setShowPreLoad, setNavigate, setShowNav, perProfile } = useContext(NavigateContext)
   const NavToLogin = (e) => {
@@ -26,4 +26,4 @@ const Email = () => {
   );
 }
 
-export default Email;
+export default EmailConfirmationPage;

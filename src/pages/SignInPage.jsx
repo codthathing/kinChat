@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginComp = () => {
+const SignInPage = () => {
   const navigate = useNavigate();
 
   const signupOptions = [
@@ -33,4 +33,4 @@ const LoginComp = () => {
   );
 }
 
-export default LoginComp;
+export default SignInPage;

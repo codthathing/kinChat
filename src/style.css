@@ -109,6 +109,11 @@ body {
   color: red;
 }
 
+#change-password-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .linkText {
   color: red;
   font-weight: 700;
@@ -193,10 +198,6 @@ body {
 
 .mesPerHead {
   font-weight: 700;
-}
-
-#mesProDiv {
-  margin-bottom: 0;
 }
 
 .mesPerDiv {
