@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavigateContext } from "../services/providers/navigateContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import PageBack from "../components/commons/PageBack";
+import PageBack from "../components/common/PageBack";
 import AuthTopic from "../components/auth/AuthTopic";
 import AuthInput from "../components/auth/AuthInput";
 import AuthButton from "../components/auth/AuthButton";

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { NavigateContext } from "./services/providers/navigateContext";
 import Header from "./components/ui/Header";
-import PreloadAnimation from "./components/commons/PreloadAnimation";
+import PreloadAnimation from "./components/common/PreloadAnimation";
 import UserProfile from "./components/user/UserProfile";
 import UserSearch from "./components/user/UserSearch";
 import UserInvite from "./components/user/UserInvite";

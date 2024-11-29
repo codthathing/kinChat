@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavigateContext } from "../../services/providers/navigateContext";
-import PageBack from "../commons/PageBack";
+import PageBack from "../common/PageBack";
 
 const UserInvite = () => {
   const { setShowPages, showPages } = useContext(NavigateContext);
