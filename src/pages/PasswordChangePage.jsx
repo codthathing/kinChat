@@ -36,7 +36,7 @@ const PasswordChangePage = () => {
         if (passDetails.password !== passDetails.conPass && passDetails.password.length >= 8) newFeedBack.conPass = "Passoword not matching";
       } else {
         setAccounts(prevState => prevState.map((account) => {
-          if (account.email === accountEmail) return { ...account, password: passDetails.password, conPass: passDetails.conPass };
+          if (account.email === accountEmail) return { ...account, password: passDetails.password };
           return account;
         }));
       };

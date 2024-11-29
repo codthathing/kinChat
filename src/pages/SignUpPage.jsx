@@ -35,8 +35,8 @@ const SignUpPage = () => {
         if (accDetails.password.length < 8) newFeedBack.password = "Password entered not upto 8 words";
         if (accDetails.password !== accDetails.conPass && accDetails.password.length >= 8) newFeedBack.conPass = "Password not matching";
       } else {
-        const perAcc = { id: Date.now(), email: accDetails.email, password: accDetails.password, conPass: accDetails.conPass, username: accDetails.username, profile: unknown_icon, logged: false };
-        // setAccounts([...accounts, perAcc]);
+        const perAcc = { email: accDetails.email, password: accDetails.password, username: accDetails.username };
+        // navigate(`/email-confirmation`, {state: perAcc });
       };
     } else {
       if (!accDetails.email) newFeedBack.email = "Email is a required field";

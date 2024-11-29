@@ -5,7 +5,7 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   const signupOptions = [
-    { id: 0, icon: "fa-brands fa-google", text: "Login in with Google", functions: () => navigate("/message") },
+    { id: 0, icon: "fa-brands fa-google", text: "Login in with Google", functions: () => navigate("") },
     { id: 1, icon: "fa-solid fa-envelope", text: "Login in with Email", functions: () => navigate("/login") }
   ];
 
